@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "335100031725",
+    "project_id": "medicalrecord-f952a",
+    "storage_bucket": "medicalrecord-f952a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335100031725:android:aa4b2d7ad207aab606d2e4",
+        "android_client_info": {
+          "package_name": "com.medical.record"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335100031725-c5nntkt5t9ngbj5uf17mpngus9nnlag3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGxS2pUGePONuwpvxfuex6IFDOwjZVSdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335100031725-c5nntkt5t9ngbj5uf17mpngus9nnlag3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
