@@ -17,6 +17,10 @@ class Api {
     return ref.get();
   }
 
+  Future<QuerySnapshot> getDataCollectionId(String id, String collection) {
+    return ref.doc(id).collection(collection).get();
+  }
+
   Stream<QuerySnapshot> streamDataCollection() {
     return ref.snapshots();
   }
@@ -25,12 +29,18 @@ class Api {
     return ref.doc(id).get();
   }
 
+  Future<DocumentSnapshot> getDocumentByIdDoc(String id,String collection ,String idDoc) {
+    return ref.doc(id).collection(collection).doc(idDoc).get();
+  }
   Future<void> removeDocument(String id) {
     return ref.doc(id).delete();
   }
 
   Future<DocumentReference> addDocument(Map data) {
     return ref.add(data);
+  }
+  Future<void> addDocumentCollection(String id,String collection,String idDoc,Map<String,dynamic> data) {
+    return ref.doc(id).collection(collection).doc(idDoc).set(data);
   }
 
   Future<void> addDocumentWithId(String id, Object data) {
@@ -43,6 +53,9 @@ class Api {
 
   Future<QuerySnapshot> getWhere(String key, String value) {
     return ref.where(key, isEqualTo: value).get();
+  }
+  Future<QuerySnapshot> getCollectionWhere(String id,String collection,String key, bool value) {
+    return ref.doc(id).collection(collection).where(key, isEqualTo: value).get();
   }
 
   Future<QuerySnapshot> getWhereWhere(

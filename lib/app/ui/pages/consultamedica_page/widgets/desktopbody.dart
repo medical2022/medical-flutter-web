@@ -27,7 +27,9 @@ class Desktopbody extends StatelessWidget {
       builder: (_) {
         return Column(
           children: [
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -65,11 +67,14 @@ class Desktopbody extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Row(
-                  children: [Icon(Icons.calculate), Text("Calculadora")],
-                ),
-
-                
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.CALCULADORA);
+                  },
+                  child: Row(
+                    children: [Icon(Icons.calculate), Text("Calculadora")],
+                  ),
+                )
               ],
             ),
             Row(
@@ -88,16 +93,24 @@ class Desktopbody extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    Text("Paciente : ",style: TextStyle(fontWeight: FontWeight.bold),),
+                    Text(
+                      "Paciente : ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     Text("${_.args["paciente"].name}"),
-                    SizedBox(width: 10,),
-                    Text("Edad : ",style: TextStyle(fontWeight: FontWeight.bold)),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text("Edad : ",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                     Text("${_.args["paciente"].date}"),
                   ],
                 ),
@@ -107,79 +120,82 @@ class Desktopbody extends StatelessWidget {
                       children: [
                         Icon(Icons.save),
                         Text("Terminar y Guardar"),
-                        SizedBox(width: 10,),
-                       Icon(Icons.cloud), Text("Descargar"),
-                        SizedBox(width: 10,),
-                       Icon(Icons.send), Text("Enviar")
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(Icons.cloud),
+                        Text("Descargar"),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(Icons.send),
+                        Text("Enviar")
                       ],
                     ),
                   ],
                 ),
               ],
             ),
-            
-              Column(
-                children: [
-                  TabBar(
+            Column(
+              children: [
+                TabBar(
                     controller: _.tabController,
-                    isScrollable: true, 
-                    labelColor: Colors.black, tabs: [
-                    Tab(
-                      text: "Evolución",
-                    ),
-                    Tab(
-                      text: "Signos Vitales",
-                    ),
-                    Tab(
-                      text: "Exploración Física",
-                    ),
-                    Tab(
-                      text: "Estudios Aux",
-                    ),
-                    Tab(
-                      text: "Diagnóstico",
-                    ),
-                    Tab(
-                      text: "Análisis y Plan",
-                    ),
-                    Tab(
-                      text: "Pronóstico",
-                    ),
-                    Tab(
-                      text: "Solicitudes",
-                    ),
-                    Tab(
-                      text: "Receta",
-                    ),
-                    Tab(
-                      text: "Interconsulta",
-                    ),
-                    Tab(
-                      text: "Gráficas",
-                    ),
-                  ]),
-                  Container(
-                    height: Get.height ,
-                    width: Get.width,
-                    child: TabBarView(
-                      controller: _.tabController,
-                      children: [
-                      EvolucionView(),
-                      SignosvitalesView(),
-                      ExploracionfisicaView(),
-                      EstudiosauxView(),
-                      DiagnosticoView(),
-                      AnalisisplanView(),
-                      PronosticoView(),
-                      SolicitudesView(),
-                      RecetaView(),
-                      InterconsultaView(),
-                      Text("ASDASDASWWWWWWWWWWWWWWWWWWW"),
+                    isScrollable: true,
+                    labelColor: Colors.black,
+                    tabs: [
+                      Tab(
+                        text: "Evolución",
+                      ),
+                      Tab(
+                        text: "Signos Vitales",
+                      ),
+                      Tab(
+                        text: "Exploración Física",
+                      ),
+                      Tab(
+                        text: "Estudios Aux",
+                      ),
+                      Tab(
+                        text: "Diagnóstico",
+                      ),
+                      Tab(
+                        text: "Análisis y Plan",
+                      ),
+                      Tab(
+                        text: "Pronóstico",
+                      ),
+                      Tab(
+                        text: "Solicitudes",
+                      ),
+                      Tab(
+                        text: "Receta",
+                      ),
+                      Tab(
+                        text: "Interconsulta",
+                      ),
+                      Tab(
+                        text: "Gráficas",
+                      ),
                     ]),
-                  )
-                ],
-              ),
-           
+                Container(
+                  height: Get.height,
+                  width: Get.width,
+                  child: TabBarView(controller: _.tabController, children: [
+                    EvolucionView(),
+                    SignosvitalesView(),
+                    ExploracionfisicaView(),
+                    EstudiosauxView(),
+                    DiagnosticoView(),
+                    AnalisisplanView(),
+                    PronosticoView(),
+                    SolicitudesView(),
+                    RecetaView(),
+                    InterconsultaView(),
+                    Text("ASDASDASWWWWWWWWWWWWWWWWWWW"),
+                  ]),
+                )
+              ],
+            ),
           ],
         );
       },

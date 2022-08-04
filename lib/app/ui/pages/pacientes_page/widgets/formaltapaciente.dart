@@ -325,12 +325,26 @@ class _AltapacienteformState extends State<Altapacienteform> {
                 height: 20,
               ),
               ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // _.checkaltapaciente(formkey);
 
                     if (kIsWeb) {
                       print("joel");
-                      _.checkaltapaciente(formkey);
+                      await _.checkaltapaciente(formkey);
+                      showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                                content:
+                                    Text("Pacientes registrado correctamente"),
+                                actions: [
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        Get.offNamedUntil(
+                                            Routes.PACIENTES, (route) => false);
+                                      },
+                                      child: Text("continuar"))
+                                ],
+                              ));
                     }
                     // Get.dialog(Column(
                     //   children: [

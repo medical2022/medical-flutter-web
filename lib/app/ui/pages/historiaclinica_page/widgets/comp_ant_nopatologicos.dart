@@ -21,7 +21,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
         init: HistoriaclinicaController(),
         builder: (_) {
           return SingleChildScrollView(
-            child: Column(
+            child: Obx(()=> Column(
               children: [
                 Divider(
                   height: 10,
@@ -49,7 +49,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.casaHabitacionController))
                           ],
                         )
                       ],
@@ -69,7 +69,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.malformacionesController))
                           ],
                         )
                       ],
@@ -89,16 +89,16 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioConvivenciaAnimalesDomesticos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioConvivenciaAnimalesDomesticos.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioConvivenciaAnimalesDomesticos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioConvivenciaAnimalesDomesticos.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -123,16 +123,16 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioTabaquismo.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioTabaquismo.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioTabaquismo.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioTabaquismo.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -158,16 +158,16 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioCuadroDeVacunacion.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioCuadroDeVacunacion.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioCuadroDeVacunacion.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioCuadroDeVacunacion.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -193,7 +193,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.alimentacionController))
                           ],
                         )
                       ],
@@ -215,7 +215,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.tipoDeLecheController))
                           ],
                         )
                       ],
@@ -234,16 +234,16 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioPracticaAlgunDeporte.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioPracticaAlgunDeporte.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioPracticaAlgunDeporte.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioPracticaAlgunDeporte.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -271,7 +271,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.sonrisaController))
                           ],
                         )
                       ],
@@ -291,7 +291,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.acercamientoController))
                           ],
                         )
                       ],
@@ -313,7 +313,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.sedestacionController))
                           ],
                         )
                       ],
@@ -333,7 +333,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.deambularController))
                           ],
                         )
                       ],
@@ -355,7 +355,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.palabrasReferencialesController))
                           ],
                         )
                       ],
@@ -375,7 +375,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.frasesExpresionesController))
                           ],
                         )
                       ],
@@ -397,7 +397,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.bebeDeLaTazaController))
                           ],
                         )
                       ],
@@ -417,7 +417,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.seVisteSoloController))
                           ],
                         )
                       ],
@@ -439,7 +439,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.controlDeEsfinteresDiaController))
                           ],
                         )
                       ],
@@ -459,7 +459,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.controlDeEsfinteresNocheController))
                           ],
                         )
                       ],
@@ -468,7 +468,7 @@ class _NoPatologicosViewState extends State<NoPatologicosView> {
                 ),
                  SizedBox(height: 2.h,),
               ],
-            ),
+            ),)
           );
         });
   }

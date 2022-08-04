@@ -21,7 +21,7 @@ class _PatologicosViewState extends State<PatologicosView> {
         init: HistoriaclinicaController(),
         builder: (_) {
           return SingleChildScrollView(
-            child: Column(
+            child: Obx(()=> Column(
               children: [
                 Divider(
                   height: 10,
@@ -47,16 +47,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioHaSidoInternado.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioHaSidoInternado.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioHaSidoInternado.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioHaSidoInternado.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -81,16 +81,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioFracturasPatologicos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioFracturasPatologicos.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioFracturasPatologicos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioFracturasPatologicos.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -116,16 +116,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioTransfusionesSanguineos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioTransfusionesSanguineos.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioTransfusionesSanguineos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioTransfusionesSanguineos.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -150,16 +150,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioAlergiasMedicamentos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioAlergiasMedicamentos.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioAlergiasMedicamentos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioAlergiasMedicamentos.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -185,16 +185,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioAlergiasAlimentos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioAlergiasAlimentos.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioAlergiasAlimentos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioAlergiasAlimentos.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -219,16 +219,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioInfeccionesViasAreas.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioInfeccionesViasAreas.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioInfeccionesViasAreas.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioInfeccionesViasAreas.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -254,16 +254,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioInfeccionesViasUrinarias.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioInfeccionesViasUrinarias.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioInfeccionesViasUrinarias.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioInfeccionesViasUrinarias.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -288,16 +288,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioReaccionesVacuna.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioReaccionesVacuna.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioReaccionesVacuna.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioReaccionesVacuna.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -323,16 +323,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioCrisisConvulsivasPatalogicos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioCrisisConvulsivasPatalogicos.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioCrisisConvulsivasPatalogicos.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioCrisisConvulsivasPatalogicos.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -357,16 +357,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioReflujoGastroesofagico.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioReflujoGastroesofagico.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioReflujoGastroesofagico.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioReflujoGastroesofagico.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -404,16 +404,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioAlcoholismo.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioAlcoholismo.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioAlcoholismo.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioAlcoholismo.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -438,16 +438,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioTabaquismo.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioTabaquismo.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioTabaquismo.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioTabaquismo.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -474,16 +474,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioDrogas.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioDrogas.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioDrogas.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioDrogas.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -509,7 +509,7 @@ class _PatologicosViewState extends State<PatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.inicioDeVidaSexualController))
                           ],
                         )
                       ],
@@ -531,7 +531,7 @@ class _PatologicosViewState extends State<PatologicosView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar", Get.width / 7,
-                                    craneocontroller))
+                                    _.numeroDeParejasController))
                           ],
                         )
                       ],
@@ -551,7 +551,7 @@ class _PatologicosViewState extends State<PatologicosView> {
                 SizedBox(height: 2.h,),
                 
               ],
-            ),
+            ),)
           );
         });
   }

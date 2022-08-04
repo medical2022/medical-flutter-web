@@ -21,7 +21,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
         init: HistoriaclinicaController(),
         builder: (_) {
           return SingleChildScrollView(
-            child: Column(
+            child: Obx(()=> Column(
               children: [
                 Divider(
                   height: 10,
@@ -50,7 +50,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7,_.numeroDeEmbarazoController ))
                           ],
                         )
                       ],
@@ -70,7 +70,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7, _.visitaMedicoDuranteEmbarazoController))
                           ],
                         )
                       ],
@@ -93,16 +93,16 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioAmenazaDeAborto.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioAmenazaDeAborto.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioAmenazaDeAborto.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioAmenazaDeAborto.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -126,16 +126,16 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioNinoDeseado.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioNinoDeseado.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioNinoDeseado.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioNinoDeseado.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -163,16 +163,16 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioNinoPlaneado.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioNinoPlaneado.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioNinoPlaneado.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioNinoPlaneado.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -196,16 +196,16 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioComplicacionDuranteEmbarazo.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioComplicacionDuranteEmbarazo.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioComplicacionDuranteEmbarazo.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioComplicacionDuranteEmbarazo.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -234,7 +234,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7, _.semanasDeGestacionNacimientoController))
                           ],
                         )
                       ],
@@ -254,7 +254,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7, _.tipoDePartoController))
                           ],
                         )
                       ],
@@ -278,7 +278,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7, _.pesoAlNacerController))
                           ],
                         )
                       ],
@@ -291,14 +291,14 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Tala al nacer",
+                            child: Text("Talla al nacer",
                                 style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7, _.tallaAlNacerController))
                           ],
                         )
                       ],
@@ -322,7 +322,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7, _.perimetroCefalicoController))
                           ],
                         )
                       ],
@@ -341,16 +341,16 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioLloroRespiroAlNacer.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioLloroRespiroAlNacer.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioLloroRespiroAlNacer.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioLloroRespiroAlNacer.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -380,7 +380,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7, _.apgarAlNacimientoController))
                           ],
                         )
                       ],
@@ -399,16 +399,16 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioEgresoConLaMadre.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioEgresoConLaMadre.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioEgresoConLaMadre.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioEgresoConLaMadre.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -438,7 +438,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7, _.tarnizMetabolicoController))
                           ],
                         )
                       ],
@@ -457,16 +457,16 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioTarnizAuditivo.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioTarnizAuditivo.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioTarnizAuditivo.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioTarnizAuditivo.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -496,7 +496,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7, _.vacunasNacimientoController))
                           ],
                         )
                       ],
@@ -515,16 +515,16 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioVitaminaK.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioVitaminaK.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioVitaminaK.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioVitaminaK.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -555,16 +555,16 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: select,
+                                groupValue: _.radioVitaminaA.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioVitaminaA.value = value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: select,
+                                groupValue: _.radioVitaminaA.value,
                                 onChanged: (value) {
-                                  select = value.toString();
+                                  _.radioVitaminaA.value = value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
@@ -591,7 +591,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                             Expanded(
                                 flex: 2,
                                 child: textformfield("Especificar",
-                                    Get.width / 7, craneocontroller))
+                                    Get.width / 7, _.perinatalesController))
                           ],
                         )
                       ],
@@ -604,7 +604,7 @@ class _PerinatalesViewState extends State<PerinatalesView> {
                 ),
                 
               ],
-            ),
+            ),)
           );
         });
   }

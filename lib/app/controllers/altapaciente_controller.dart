@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:medicinesystem/app/data/auth/auth.dart';
 import 'package:medicinesystem/app/data/models/Paciente._model.dart';
 import 'package:medicinesystem/app/data/services/altapaciente_service.dart';
 import 'package:image_picker_web/image_picker_web.dart';
@@ -16,6 +17,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 class AltapacientController extends GetxController {
   late Paciente pacien;
   late bool isDetails = false;
+  Auth auth = new Auth();
   @override
   void onInit() {
     // TODO: implement onInit
@@ -144,14 +146,15 @@ class AltapacientController extends GetxController {
     phonecontroller.dispose();
   }
 
-  void checkaltapaciente(GlobalKey<FormState> formkey) async {
+  Future checkaltapaciente(GlobalKey<FormState> formkey) async {
     var f = formkey.currentState!.validate();
     if (!f) {
       return;
     } else {
       await uploadPhoto();
-
+      var uuid = Uuid().v1();
       Paciente paciente = new Paciente();
+      paciente.id = uuid;
       paciente.name = nombrecontroller.text;
       paciente.email = correocontroller.text;
       paciente.apellidopaterno = paternocontroller.text;
@@ -176,7 +179,9 @@ class AltapacientController extends GetxController {
       paciente.active = activecontroller.text;
       paciente.relationship = pickparentesco.value;
       formkey.currentState!.save();
-      service.savePaciente(paciente);
+      var id = auth.currentUser()!.uid;
+      await service.save(id, "pacientes", uuid, paciente);
+
       print("registrado");
       // Future.delayed(
       //   Duration(seconds: 2),

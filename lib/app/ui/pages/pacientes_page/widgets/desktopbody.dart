@@ -25,7 +25,8 @@ class Desktopbody extends StatelessWidget {
                     children: [
                       IconButton(
                           onPressed: () {
-                            Get.toNamed(Routes.PACIENTES + Routes.ALTAPACIENTE,arguments: {"opcion":1});
+                            Get.toNamed(Routes.PACIENTES + Routes.ALTAPACIENTE,
+                                arguments: {"opcion": 1});
                           },
                           icon: FaIcon(FontAwesomeIcons.plus)),
                       Text("Alta paciente")
@@ -34,11 +35,18 @@ class Desktopbody extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Paciente",style: Theme.of(context).textTheme.titleLarge,),
+                      Text(
+                        "Paciente",
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
                       Container(
                         width: Get.width / 6,
                         height: 40,
                         child: TextFormField(
+                          controller: _.controllerSearch,
+                          onChanged: (value) {
+                            _.searchPacientes(value);
+                          },
                           decoration: InputDecoration(
                               labelText: "Buscar paciente..",
                               prefixIcon: Icon(Icons.search),
@@ -57,25 +65,50 @@ class Desktopbody extends StatelessWidget {
                       child: Container(
                           margin: EdgeInsets.only(bottom: 32),
                           width: Get.width,
-                          child: FutureBuilder<List<Paciente>>(
-                            future: _.pacientes,
-                            builder: (context, AsyncSnapshot<List<Paciente>> asyncsnap) {
-                              if (!asyncsnap.hasData) {
-                                return LinearProgressIndicator();
-                              } else {
-                                List<Paciente>? result = asyncsnap.data;
-                                return DataTable(columns: <DataColumn>[
-                                  DataColumn(label: Text("PACIENTE",style: Theme.of(context).textTheme.headlineSmall)),
-                                  DataColumn(label: Text("# DE EXPEDIENTE",style: Theme.of(context).textTheme.headlineSmall)),
-                                  DataColumn(label: Text("TELÉFONO",style: Theme.of(context).textTheme.headlineSmall)),
-                                  DataColumn(label: Text("DIRECCIÓN",style: Theme.of(context).textTheme.headlineSmall)),
-                                  DataColumn(label: Text("ACCIONES",style: Theme.of(context).textTheme.headlineSmall)),
-                                ], rows: _.buildDatarows(result,Theme.of(context).textTheme.labelSmall!));
-                              }
-                            },
+                          child: 
+                                 Obx(()=> DataTable(
+                                    columns: <DataColumn>[
+                                      DataColumn(
+                                          label: Text("PACIENTE",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineSmall)),
+                                      DataColumn(
+                                          label: Text("# DE EXPEDIENTE",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineSmall)),
+                                      DataColumn(
+                                          label: Text("TELÉFONO",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineSmall)),
+                                      DataColumn(
+                                          label: Text("DIRECCIÓN",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineSmall)),
+                                      DataColumn(
+                                          label: Text("ACCIONES",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineSmall)),
+                                    ],
+                                    rows: _.buildDatarows(
+                                        
+                                        Theme.of(context)
+                                            .textTheme
+                                            .labelSmall!),
+                                 ))
+                            
                           )),
-                    ),
+                    
                   ),
+                  Container(
+                    height: 200,
+                    width: 200,
+                    
+                  )
                 ],
               );
             }));

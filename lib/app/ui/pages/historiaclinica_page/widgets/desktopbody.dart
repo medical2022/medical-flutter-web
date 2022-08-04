@@ -17,7 +17,6 @@ class Desktopbody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> items = ["Joel", "Alexander"];
-   
 
     return GetBuilder<HistoriaclinicaController>(
         init: HistoriaclinicaController(),
@@ -36,14 +35,16 @@ class Desktopbody extends StatelessWidget {
                     Text("Paciente: "),
                     Container(
                         child: Obx(
-                      () => DropdownButton<String>(
+                      () => DropdownButton<Paciente>(
                         value: _.select.value,
                         onChanged: (value) {
-                          _.select.value = value.toString();
+                          _.select.value = value!;
+                          _.setData();
+                          print(_.select.value);
                         },
                         items: _.pacien.value.value
-                            .map((item) => DropdownMenuItem<String>(
-                                value: item.name,
+                            .map((item) => DropdownMenuItem<Paciente>(
+                                value: item,
                                 child: Text("${item.name} ASDASD")))
                             .toList(),
                       ),

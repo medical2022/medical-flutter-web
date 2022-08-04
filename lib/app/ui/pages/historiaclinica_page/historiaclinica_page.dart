@@ -19,6 +19,6 @@ class HistoriaclinicaPage extends GetView<HistoriaclinicaController> {
         return Desktopbody();
       }
     }),
-    );;
+    );
   }
 }

@@ -5,7 +5,7 @@ abstract class Routes {
   static const PACIENTES = '/pacientes';
   static const ALTAPACIENTE = "/altapaciente";
   static const DETAILSPACIENTE = "/detailspaciente";
-
+  static const CALCULADORA = "/calculadora";
   static const CONSULTA = '/consulta';
   static const CONSULTAMEDICA = "/consultamedica";
   static const HISTORIACLINICA = '/historiaclinica';

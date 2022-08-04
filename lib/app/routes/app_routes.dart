@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:medicinesystem/app/bindings/agenda_binding.dart';
 import 'package:medicinesystem/app/bindings/altapaciente_binding.dart';
+import 'package:medicinesystem/app/bindings/calculadora_binding.dart';
 import 'package:medicinesystem/app/bindings/configuracion_binding.dart';
 import 'package:medicinesystem/app/bindings/consulta_binding.dart';
 import 'package:medicinesystem/app/bindings/consultamedica_binding.dart';
@@ -12,6 +13,7 @@ import 'package:medicinesystem/app/bindings/register_binding.dart';
 import 'package:medicinesystem/app/bindings/reportes_binding.dart';
 import 'package:medicinesystem/app/routes/app_pages.dart';
 import 'package:medicinesystem/app/ui/pages/agenda_page/agenda_page.dart';
+import 'package:medicinesystem/app/ui/pages/calculadora_page/calculadora_page.dart';
 import 'package:medicinesystem/app/ui/pages/configuracion_page/configuracion_page.dart';
 import 'package:medicinesystem/app/ui/pages/consulta_page/consulta_page.dart';
 import 'package:medicinesystem/app/ui/pages/consultamedica_page/consultamedica_page.dart';
@@ -28,6 +30,7 @@ abstract class AppPages {
   static final pages = [
     GetPage(name: Routes.LOGIN, page:()=> LoginPage(), binding:LoginBinding() ),
     GetPage(name: Routes.REGISTER, page:()=> RegisterPage(), binding:RegisterBinding() ),
+    GetPage(name: Routes.CALCULADORA, page:()=> CalculadoraPage(), binding:CalculadoraBinding() ),
     GetPage(
         name: Routes.PACIENTES,
         page: () => PacientesPage(),

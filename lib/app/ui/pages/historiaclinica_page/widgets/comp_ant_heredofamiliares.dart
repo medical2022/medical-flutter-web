@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medicinesystem/app/components/textformfield.dart';
 import 'package:medicinesystem/app/controllers/exploracionfisica_controller.dart';
+import 'package:medicinesystem/app/controllers/historiaclinica_controller.dart';
 import 'package:sizer/sizer.dart';
+
 class HeredofamiliaresView extends StatefulWidget {
   HeredofamiliaresView({Key? key}) : super(key: key);
 
@@ -15,415 +17,411 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
   TextEditingController craneocontroller = new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ExploracionfisicaController>(
-        init: ExploracionfisicaController(),
+    return GetBuilder<HistoriaclinicaController>(
+        init: HistoriaclinicaController(),
         builder: (_) {
-          return Column(
-            children: [
-              Divider(
-                height: 10,
-              ),
-              Align(
-                  alignment: Alignment.centerLeft,
-                  child:  Text(
-                    "Antecedentes heredofamiliares",
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
+          return Obx(() => Column(
                 children: [
-                  Expanded(
-                      child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child:
-                              Text("Malformaciones congénitas", style: TextStyle(fontSize: 18))),
-                      Row(
-                        children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
-                        ],
-                      )
-                    ],
-                  )),
-                  SizedBox(
-                    width: 20,
+                  Divider(
+                    height: 10,
                   ),
-                  Expanded(
-                      child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Diabetes mellitus", style: TextStyle(fontSize: 18))),
-                      Row(
-                        children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
-                        ],
-                      )
-                    ],
-                  )),
-                ],
-              ),
-              SizedBox(height: 2.h),
-              Row(
-                children: [
-                  Expanded(
-                      child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Hipertensión arterial", style: TextStyle(fontSize: 18))),
-                      Row(
-                        children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
-                        ],
-                      )
-                    ],
-                  )),
-                  SizedBox(
-                    width: 20,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Antecedentes heredofamiliares",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
-                  Expanded(
-                      child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child:
-                              Text("Epilepsía", style: TextStyle(fontSize: 18))),
-                      Row(
-                        children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
-                        ],
-                      )
-                    ],
-                  )),
-                ],
-              ),
-               SizedBox(height: 2.h),
-              Row(
-                children: [
-                  Expanded(
-                      child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Alergía", style: TextStyle(fontSize: 18))),
-                      Row(
-                        children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
-                        ],
-                      )
-                    ],
-                  )),
                   SizedBox(
-                    width: 20,
+                    height: 20,
                   ),
-                  Expanded(
-                      child: Column(
+                  Row(
                     children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Asma",
-                              style: TextStyle(fontSize: 18))),
-                      Row(
+                      Expanded(
+                          child: Column(
                         children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Malformaciones congénitas",
+                                  style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioMalFormaciones.value,
+                                  onChanged: (value) {
+                                    _.radioMalFormaciones.value =
+                                        value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioMalFormaciones.value,
+                                  onChanged: (value) {
+                                    _.radioMalFormaciones.value =
+                                        value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
                         ],
-                      )
+                      )),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                          child: Column(
+                        children: [
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Diabetes mellitus",
+                                  style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioDiabetesMellitus.value,
+                                  onChanged: (value) {
+                                    _.radioDiabetesMellitus.value = value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioDiabetesMellitus.value,
+                                  onChanged: (value) {
+                                    _.radioDiabetesMellitus.value = value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
                     ],
-                  )),
-                ],
-              ),
-              SizedBox(height: 2.h,),
-              Row(
-                children: [
-                  Expanded(
-                      child: Column(
+                  ),
+                  SizedBox(height: 2.h),
+                  Row(
                     children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Lupus",
-                              style: TextStyle(fontSize: 18))),
-                      Row(
+                      Expanded(
+                          child: Column(
                         children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Hipertensión arterial",
+                                  style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioHipertensionArterial.value,
+                                  onChanged: (value) {
+                                    _.radioHipertensionArterial.value = value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioHipertensionArterial.value,
+                                  onChanged: (value) {
+                                    _.radioHipertensionArterial.value = value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
                         ],
-                      )
+                      )),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                          child: Column(
+                        children: [
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Epilepsía",
+                                  style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioEpilepsia.value,
+                                  onChanged: (value) {
+                                    _.radioEpilepsia.value = value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioEpilepsia.value,
+                                  onChanged: (value) {
+                                    _.radioEpilepsia.value = value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
                     ],
-                  )),
+                  ),
+                  SizedBox(height: 2.h),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: Column(
+                        children: [
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Alergía",
+                                  style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioAlergia.value,
+                                  onChanged: (value) {
+                                    _.radioAlergia.value = value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioAlergia.value,
+                                  onChanged: (value) {
+                                    _.radioAlergia.value = value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                          child: Column(
+                        children: [
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child:
+                                  Text("Asma", style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioAsma.value,
+                                  onChanged: (value) {
+                                    _.radioAsma.value = value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioAsma.value,
+                                  onChanged: (value) {
+                                    _.radioAsma.value = value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
+                    ],
+                  ),
                   SizedBox(
-                    width: 20,
+                    height: 2.h,
                   ),
-                  Expanded(
-                      child: Column(
+                  Row(
                     children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Enfermedad renal",
-                              style: TextStyle(fontSize: 18))),
-                     Row(
+                      Expanded(
+                          child: Column(
                         children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Lupus",
+                                  style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioLupus.value,
+                                  onChanged: (value) {
+                                    _.radioLupus.value = value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioLupus.value,
+                                  onChanged: (value) {
+                                    _.radioLupus.value = value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
                         ],
-                      )
-                    ],
-                  )),
-                ],
-              ),
-               SizedBox(height: 2.h),
-              Row(
-                children: [
-                  Expanded(
-                      child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Enuresis", style: TextStyle(fontSize: 18))),
-                      Row(
+                      )),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                          child: Column(
                         children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Enfermedad renal",
+                                  style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioEnfermedadRenal.value,
+                                  onChanged: (value) {
+                                    _.radioEnfermedadRenal.value = value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioEnfermedadRenal.value,
+                                  onChanged: (value) {
+                                    _.radioEnfermedadRenal.value = value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
                         ],
-                      )
+                      )),
                     ],
-                  )),
-                  SizedBox(
-                    width: 20,
                   ),
-                  Expanded(
-                      child: Column(
+                  SizedBox(height: 2.h),
+                  Row(
                     children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Obesidad",
-                              style: TextStyle(fontSize: 18))),
-                      Row(
+                      Expanded(
+                          child: Column(
                         children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Enuresis",
+                                  style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioEnuresis.value,
+                                  onChanged: (value) {
+                                    _.radioEnuresis.value = value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioEnuresis.value,
+                                  onChanged: (value) {
+                                    _.radioEnuresis.value = value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
                         ],
-                      )
-                    ],
-                  )),
-                ],
-              ),
-               SizedBox(height: 2.h),
-              Row(
-                children: [
-                  Expanded(
-                      child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Cancer", style: TextStyle(fontSize: 18))),
-                      Row(
+                      )),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                          child: Column(
                         children: [
-                          Radio(
-                              value: "Si",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("Si"),
-                          Radio(
-                              value: "No",
-                              groupValue: select,
-                              onChanged: (value) {
-                                select = value.toString();
-                              }),
-                          Text("No"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                         
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Obesidad",
+                                  style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioObesidad.value,
+                                  onChanged: (value) {
+                                    _.radioObesidad.value = value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioObesidad.value,
+                                  onChanged: (value) {
+                                    _.radioObesidad.value = value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
                         ],
-                      )
+                      )),
                     ],
-                  )),
-                  SizedBox(
-                    width: 20,
                   ),
-                  Expanded(
-                      child: Column(
+                  SizedBox(height: 2.h),
+                  Row(
                     children: [
-                      
+                      Expanded(
+                          child: Column(
+                        children: [
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Cancer",
+                                  style: TextStyle(fontSize: 18))),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: "Si",
+                                  groupValue: _.radioCancer.value,
+                                  onChanged: (value) {
+                                    _.radioCancer.value = value.toString();
+                                  }),
+                              Text("Si"),
+                              Radio(
+                                  value: "No",
+                                  groupValue: _.radioCancer.value,
+                                  onChanged: (value) {
+                                    _.radioCancer.value = value.toString();
+                                  }),
+                              Text("No"),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                          child: Column(
+                        children: [],
+                      )),
                     ],
-                  )),
+                  ),
                 ],
-              ),
-              
-            ],
-          );
+              ));
         });
   }
 }

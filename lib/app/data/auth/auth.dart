@@ -15,8 +15,12 @@ class Auth {
     return user;
   }
 
-  Future signOut()async {
+  Future signOut() async {
     return await auth.signOut();
+  }
+
+  User? currentUser() {
     
+    return auth.currentUser;
   }
 }

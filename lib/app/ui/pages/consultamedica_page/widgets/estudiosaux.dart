@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:medicinesystem/app/controllers/consultamedica_controller.dart';
 
 class EstudiosauxView extends StatelessWidget {
   const EstudiosauxView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var con = Get.put(ConsultamedicaController());
     return Column(
       children: [
         Divider(height: 10,),
@@ -20,6 +23,7 @@ class EstudiosauxView extends StatelessWidget {
               ),
         TextFormField(
           maxLines: 20,
+          controller: con.estudiosAuxiliaresController,
           decoration:InputDecoration(
             
             

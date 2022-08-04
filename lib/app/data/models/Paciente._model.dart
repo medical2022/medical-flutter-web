@@ -1,4 +1,5 @@
 class Paciente {
+  String? id;
   String? name;
   String? state;
   String? email;
@@ -21,9 +22,11 @@ class Paciente {
   String? relationship;
   String? country;
   String? phone;
-  
+
   Paciente(
-      {this.name,
+      {
+        this.id,
+        this.name,
       this.state,
       this.email,
       this.city,
@@ -73,6 +76,7 @@ class Paciente {
   // }
   factory Paciente.fromJson(Map<String, dynamic> json) {
     return Paciente(
+      id: json['id'],
       name: json['name'],
       state: json['state'],
       email: json['email'],
@@ -95,11 +99,12 @@ class Paciente {
       relationship: json['relationship'],
       country: json['country'],
       phone: json['phone'],
-    ) ;
+    );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['name'] = this.name;
     data['state'] = this.state;
     data['email'] = this.email;

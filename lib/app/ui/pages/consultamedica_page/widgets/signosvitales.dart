@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medicinesystem/app/components/textformfield.dart';
+import 'package:medicinesystem/app/controllers/consultamedica_controller.dart';
 
 class SignosvitalesView extends StatefulWidget {
   SignosvitalesView({Key? key}) : super(key: key);
@@ -10,20 +11,10 @@ class SignosvitalesView extends StatefulWidget {
 }
 
 class _SignosvitalesViewState extends State<SignosvitalesView> {
-  TextEditingController pacientecontroller = TextEditingController();
-  TextEditingController frecuenciacardiacacontroller = TextEditingController();
-  TextEditingController frecuenciarespiratoriacontroller =
-      TextEditingController();
-  TextEditingController precionarterialcontroller = TextEditingController();
-  TextEditingController pesocontroller = TextEditingController();
-  TextEditingController tallacontroller = TextEditingController();
-  TextEditingController perimetrocranealcontroller = TextEditingController();
-  TextEditingController perimetroabdominalcontroller = TextEditingController();
-  TextEditingController oximetriacontroller = TextEditingController();
-  TextEditingController temperaturacontroller = TextEditingController();
-  TextEditingController imccontroller = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
+    var con = Get.put(ConsultamedicaController());
     return Column(
       children: [
         Divider(
@@ -42,19 +33,19 @@ class _SignosvitalesViewState extends State<SignosvitalesView> {
           children: [
             Expanded(
                 child: textformfield(
-                    "Paciente", Get.width / 7, pacientecontroller)),
+                    "Paciente", Get.width / 7, con.pacienteController)),
             SizedBox(
               width: 16,
             ),
             Expanded(
                 child: textformfield(
-                    "Frecuencia cardíaca", Get.width / 7, pacientecontroller)),
+                    "Frecuencia cardíaca", Get.width / 7, con.frecCardiacaController)),
             SizedBox(
               width: 16,
             ),
             Expanded(
                 child: textformfield("Frecuencia respiratoria", Get.width / 7,
-                    pacientecontroller)),
+                    con.frecRespiratoriaController)),
           ],
         ),
         SizedBox(
@@ -64,19 +55,19 @@ class _SignosvitalesViewState extends State<SignosvitalesView> {
           children: [
             Expanded(
                 child: textformfield("Presión arterial sistémica",
-                    Get.width / 7, pacientecontroller)),
+                    Get.width / 7, con.presionArterialController)),
             SizedBox(
               width: 16,
             ),
             Expanded(
                 child: textformfield(
-                    "Peso(kg)", Get.width / 7, pacientecontroller)),
+                    "Peso(kg)", Get.width / 7, con.pesoController)),
             SizedBox(
               width: 16,
             ),
             Expanded(
                 child: textformfield(
-                    "Talla(cm)", Get.width / 7, pacientecontroller)),
+                    "Talla(cm)", Get.width / 7, con.tallaController)),
           ],
         ),
         SizedBox(
@@ -86,19 +77,19 @@ class _SignosvitalesViewState extends State<SignosvitalesView> {
           children: [
             Expanded(
                 child: textformfield("Perímetro craneal(cm)", Get.width / 7,
-                    pacientecontroller)),
+                    con.perimetroCranealController)),
             SizedBox(
               width: 16,
             ),
             Expanded(
                 child: textformfield("Peímetro abdominal(cm)", Get.width / 7,
-                    pacientecontroller)),
+                    con.perimetroAbdominalController)),
             SizedBox(
               width: 16,
             ),
             Expanded(
                 child: textformfield(
-                    "Oximetría de pulso", Get.width / 7, pacientecontroller)),
+                    "Oximetría de pulso", Get.width / 7, con.oximetriaPulsoController)),
           ],
         ),
         SizedBox(
@@ -108,12 +99,12 @@ class _SignosvitalesViewState extends State<SignosvitalesView> {
           children: [
             Expanded(
                 child: textformfield(
-                    "Temperatura (C)", Get.width / 7, pacientecontroller)),
+                    "Temperatura (C)", Get.width / 7, con.temperaturaController)),
             SizedBox(
               width: 16,
             ),
             Expanded(
-                child: textformfield("IMC", Get.width / 7, pacientecontroller)),
+                child: textformfield("IMC", Get.width / 7, con.imcController)),
             SizedBox(
               width: 16,
             ),
