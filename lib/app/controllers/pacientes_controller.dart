@@ -15,7 +15,7 @@ class PacientesController extends GetxController {
   Api api = new Api("paciente");
   Auth auth = new Auth();
 
-  late List<Paciente> pacientes;
+   List<Paciente> pacientes = [];
   late Future<List<Paciente>> pacientess;
   TextEditingController controllerSearch = TextEditingController();
   RxString textSearch = "".obs;

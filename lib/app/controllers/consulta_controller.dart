@@ -46,30 +46,30 @@ class ConsultaController extends GetxController {
   //   return rows;
   // }
 
-  List<DataRow> buildDatarows(TextStyle text) {
-    List<DataRow> rows = [];
-    consultaMedicas.forEach((element) {
-      rows.add(DataRow(cells: [
-        DataCell(
-            GestureDetector(child: Text("${element.paciente} ", style: text))),
-        DataCell(Text(
-          "${element.evolucion}",
-          style: text,
-        )),
-        DataCell(Text("${element.date_of_create}", style: text)),
-        DataCell(ElevatedButton(
-            onPressed: () {
-              getPaciente(element.idPaciente);
-              Future.delayed(Duration(seconds: 3), () {
-                Get.toNamed(Routes.CONSULTA + Routes.CONSULTAMEDICA,
-                    arguments: {"paciente": paciente});
-              });
-            },
-            child: Text("Editar"))),
-      ]));
-    });
-    return rows;
-  }
+  // List<DataRow> buildDatarows(TextStyle text) {
+  //   List<DataRow> rows = [];
+  //   consultaMedicas.forEach((element) {
+  //     rows.add(DataRow(cells: [
+  //       DataCell(
+  //           GestureDetector(child: Text("${element.paciente} ", style: text))),
+  //       DataCell(Text(
+  //         "${element.evolucion}",
+  //         style: text,
+  //       )),
+  //       DataCell(Text("${element.date_of_create}", style: text)),
+  //       DataCell(ElevatedButton(
+  //           onPressed: () {
+  //             getPaciente(element.idPaciente);
+  //             Future.delayed(Duration(seconds: 3), () {
+  //               Get.toNamed(Routes.CONSULTA + Routes.CONSULTAMEDICA,
+  //                   arguments: {"paciente": paciente});
+  //             });
+  //           },
+  //           child: Text("Editar"))),
+  //     ]));
+  //   });
+  //   return rows;
+  // }
 
   getPaciente(String? id) async {
     print(id);
@@ -107,12 +107,12 @@ class ConsultaController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     print("===================================");
-    var valor = await consultaMedicaService.getDataList(
-        auth.currentUser()!.uid, "ConsultaMedica");
-    print(valor);
+    // var valor = await consultaMedicaService.getDataList(
+    //     auth.currentUser()!.uid, "ConsultaMedica");
+    // print(valor);
     consultaMedicas.value = await consultaMedicaService.getDataList(
         auth.currentUser()!.uid, "ConsultaMedica");
-    consultaMedicasFilter.value = consultaMedicas.value;
+    // consultaMedicasFilter.value = consultaMedicas.value;
     print("===================================");
     print(consultaMedicas.value);
     super.onInit();

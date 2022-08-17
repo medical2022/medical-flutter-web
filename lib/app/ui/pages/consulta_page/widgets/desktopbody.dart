@@ -45,27 +45,7 @@ class Desktopbody extends StatelessWidget {
           Container(
               margin: EdgeInsets.only(bottom: 32),
               width: Get.width,
-              child: Obx(() => DataTable(
-                      columns: [
-                        DataColumn(
-                            label: Text("Paciente",
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall)),
-                        DataColumn(
-                            label: Text("Evolución",
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall)),
-                        DataColumn(
-                            label: Text("Fecha de creación",
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall)),
-                        DataColumn(
-                            label: Text(
-                          "",
-                        )),
-                      ],
-                      rows: con.buildDatarows(
-                          Theme.of(context).textTheme.labelSmall!)))),
+              ),
         ],
       ),
     );

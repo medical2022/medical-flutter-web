@@ -113,7 +113,14 @@ class ConsultaMedica {
     sensibilidadConservada = json['sensibilidadConservada'];
     marcha = json['marcha'];
     estudiosAuxiliares = json['estudiosAuxiliares'];
-    diagnostico = List<Diagnostico>.from(json["diagnostico"].map((x)=> Diagnostico.fromJson(x)));
+    if (json["diagnostico"] != null) {
+      diagnostico = <Diagnostico>[];
+      json["diagnostico"].forEach((v) {
+        diagnostico!.add(Diagnostico.fromJson(v));
+      });
+    }else{
+      diagnostico = <Diagnostico>[];
+    }
     analisisPlan = json['analisisPlan'];
     paraLaVida = json['paraLaVida'];
     paraLaFuncion = json['paraLaFuncion'];
@@ -155,9 +162,9 @@ class ConsultaMedica {
     data['sensibilidadConservada'] = this.sensibilidadConservada;
     data['marcha'] = this.marcha;
     data['estudiosAuxiliares'] = this.estudiosAuxiliares;
-    
-      data['diagnostico'] = this.diagnostico!.map((v) => v.toJson()).toList();
-   
+
+    data['diagnostico'] = this.diagnostico!.map((v) => v.toJson()).toList();
+
     data['analisisPlan'] = this.analisisPlan;
     data['paraLaVida'] = this.paraLaVida;
     data['paraLaFuncion'] = this.paraLaFuncion;
