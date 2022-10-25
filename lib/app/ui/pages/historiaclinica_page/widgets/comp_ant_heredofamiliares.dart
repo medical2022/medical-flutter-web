@@ -39,11 +39,12 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                     children: [
                       Expanded(
                           child: Column(
+                        
                         children: [
                           Align(
                               alignment: Alignment.centerLeft,
-                              child: Text("Malformaciones congénitas",
-                                  style: TextStyle(fontSize: 18))),
+                              child:
+                                  Text("Malformaciones congénitas", style: TextStyle(fontSize: 18))),
                           Row(
                             children: [
                               Radio(
@@ -65,8 +66,41 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.malformacionesController))
                             ],
-                          )
+                          ),
+                        
+                      
+                          // Align(
+                          //     alignment: Alignment.centerLeft,
+                          //     child: Text("Malformaciones congénitas",
+                          //         style: TextStyle(fontSize: 18))),
+                          // Row(
+                          //   children: [
+                          //     Radio(
+                          //         value: "Si",
+                          //         groupValue: _.radioMalFormaciones.value,
+                          //         onChanged: (value) {
+                          //           _.radioMalFormaciones.value =
+                          //               value.toString();
+                          //         }),
+                          //     Text("Si"),
+                          //     Radio(
+                          //         value: "No",
+                          //         groupValue: _.radioMalFormaciones.value,
+                          //         onChanged: (value) {
+                          //           _.radioMalFormaciones.value =
+                          //               value.toString();
+                          //         }),
+                          //     Text("No"),
+                          //     SizedBox(
+                          //       width: 20,
+                          //     ),
+                          //   ],
+                          // )
                         ],
                       )),
                       SizedBox(
@@ -85,21 +119,28 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                                   value: "Si",
                                   groupValue: _.radioDiabetesMellitus.value,
                                   onChanged: (value) {
-                                    _.radioDiabetesMellitus.value = value.toString();
+                                    _.radioDiabetesMellitus.value =
+                                        value.toString();
                                   }),
                               Text("Si"),
                               Radio(
                                   value: "No",
                                   groupValue: _.radioDiabetesMellitus.value,
                                   onChanged: (value) {
-                                    _.radioDiabetesMellitus.value = value.toString();
+                                   _.radioDiabetesMellitus.value =
+                                        value.toString();
                                   }),
                               Text("No"),
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.diabetesMellitusController))
                             ],
-                          )
+                          ),
+                          
                         ],
                       )),
                     ],
@@ -120,21 +161,29 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                                   value: "Si",
                                   groupValue: _.radioHipertensionArterial.value,
                                   onChanged: (value) {
-                                    _.radioHipertensionArterial.value = value.toString();
+                                    _.radioHipertensionArterial.value =
+                                        value.toString();
                                   }),
                               Text("Si"),
                               Radio(
                                   value: "No",
                                   groupValue: _.radioHipertensionArterial.value,
                                   onChanged: (value) {
-                                    _.radioHipertensionArterial.value = value.toString();
+                                    _.radioHipertensionArterial.value =
+                                        value.toString();
                                   }),
                               Text("No"),
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.hipertensionArterialController))
                             ],
-                          )
+                          ),
+                        
+                          
                         ],
                       )),
                       SizedBox(
@@ -153,21 +202,28 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                                   value: "Si",
                                   groupValue: _.radioEpilepsia.value,
                                   onChanged: (value) {
-                                    _.radioEpilepsia.value = value.toString();
+                                    _.radioEpilepsia.value =
+                                        value.toString();
                                   }),
                               Text("Si"),
                               Radio(
                                   value: "No",
                                   groupValue: _.radioEpilepsia.value,
                                   onChanged: (value) {
-                                    _.radioEpilepsia.value = value.toString();
+                                    _.radioEpilepsia.value =
+                                        value.toString();
                                   }),
                               Text("No"),
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.epilepsiaController))
                             ],
-                          )
+                          ),
+                          
                         ],
                       )),
                     ],
@@ -182,27 +238,54 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                               alignment: Alignment.centerLeft,
                               child: Text("Alergía",
                                   style: TextStyle(fontSize: 18))),
-                          Row(
+                                    Row(
                             children: [
                               Radio(
                                   value: "Si",
                                   groupValue: _.radioAlergia.value,
                                   onChanged: (value) {
-                                    _.radioAlergia.value = value.toString();
+                                    _.radioAlergia.value =
+                                        value.toString();
                                   }),
                               Text("Si"),
                               Radio(
                                   value: "No",
                                   groupValue: _.radioAlergia.value,
                                   onChanged: (value) {
-                                    _.radioAlergia.value = value.toString();
+                                    _.radioAlergia.value =
+                                        value.toString();
                                   }),
                               Text("No"),
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.alergiaController))
                             ],
-                          )
+                          ),
+                          // Row(
+                          //   children: [
+                          //     Radio(
+                          //         value: "Si",
+                          //         groupValue: _.radioAlergia.value,
+                          //         onChanged: (value) {
+                          //           _.radioAlergia.value = value.toString();
+                          //         }),
+                          //     Text("Si"),
+                          //     Radio(
+                          //         value: "No",
+                          //         groupValue: _.radioAlergia.value,
+                          //         onChanged: (value) {
+                          //           _.radioAlergia.value = value.toString();
+                          //         }),
+                          //     Text("No"),
+                          //     SizedBox(
+                          //       width: 20,
+                          //     ),
+                          //   ],
+                          // )
                         ],
                       )),
                       SizedBox(
@@ -221,21 +304,28 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                                   value: "Si",
                                   groupValue: _.radioAsma.value,
                                   onChanged: (value) {
-                                    _.radioAsma.value = value.toString();
+                                    _.radioAsma.value =
+                                        value.toString();
                                   }),
                               Text("Si"),
                               Radio(
                                   value: "No",
                                   groupValue: _.radioAsma.value,
                                   onChanged: (value) {
-                                    _.radioAsma.value = value.toString();
+                                    _.radioAsma.value =
+                                        value.toString();
                                   }),
                               Text("No"),
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.asmaController))
                             ],
-                          )
+                          ),
+                          
                         ],
                       )),
                     ],
@@ -252,27 +342,35 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                               alignment: Alignment.centerLeft,
                               child: Text("Lupus",
                                   style: TextStyle(fontSize: 18))),
+                          
                           Row(
                             children: [
                               Radio(
                                   value: "Si",
                                   groupValue: _.radioLupus.value,
                                   onChanged: (value) {
-                                    _.radioLupus.value = value.toString();
+                                    _.radioLupus.value =
+                                        value.toString();
                                   }),
                               Text("Si"),
                               Radio(
                                   value: "No",
                                   groupValue: _.radioLupus.value,
                                   onChanged: (value) {
-                                    _.radioLupus.value = value.toString();
+                                    _.radioLupus.value =
+                                        value.toString();
                                   }),
                               Text("No"),
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.lupusController))
                             ],
-                          )
+                          ),
+                          
                         ],
                       )),
                       SizedBox(
@@ -291,21 +389,28 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                                   value: "Si",
                                   groupValue: _.radioEnfermedadRenal.value,
                                   onChanged: (value) {
-                                    _.radioEnfermedadRenal.value = value.toString();
+                                    _.radioEnfermedadRenal.value =
+                                        value.toString();
                                   }),
                               Text("Si"),
                               Radio(
                                   value: "No",
                                   groupValue: _.radioEnfermedadRenal.value,
                                   onChanged: (value) {
-                                    _.radioEnfermedadRenal.value = value.toString();
+                                    _.radioEnfermedadRenal.value =
+                                        value.toString();
                                   }),
                               Text("No"),
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.enfermedadRenalController))
                             ],
-                          )
+                          ),
+                          
                         ],
                       )),
                     ],
@@ -326,21 +431,28 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                                   value: "Si",
                                   groupValue: _.radioEnuresis.value,
                                   onChanged: (value) {
-                                    _.radioEnuresis.value = value.toString();
+                                    _.radioEnuresis.value =
+                                        value.toString();
                                   }),
                               Text("Si"),
                               Radio(
                                   value: "No",
                                   groupValue: _.radioEnuresis.value,
                                   onChanged: (value) {
-                                    _.radioEnuresis.value = value.toString();
+                                    _.radioEnuresis.value =
+                                        value.toString();
                                   }),
                               Text("No"),
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.enuresisController))
                             ],
-                          )
+                          ),
+                          
                         ],
                       )),
                       SizedBox(
@@ -359,21 +471,28 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                                   value: "Si",
                                   groupValue: _.radioObesidad.value,
                                   onChanged: (value) {
-                                    _.radioObesidad.value = value.toString();
+                                    _.radioObesidad.value =
+                                        value.toString();
                                   }),
                               Text("Si"),
                               Radio(
                                   value: "No",
                                   groupValue: _.radioObesidad.value,
                                   onChanged: (value) {
-                                    _.radioObesidad.value = value.toString();
+                                    _.radioObesidad.value =
+                                        value.toString();
                                   }),
                               Text("No"),
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.obesidadController))
                             ],
-                          )
+                          ),
+                          
                         ],
                       )),
                     ],
@@ -394,21 +513,28 @@ class _HeredofamiliaresViewState extends State<HeredofamiliaresView> {
                                   value: "Si",
                                   groupValue: _.radioCancer.value,
                                   onChanged: (value) {
-                                    _.radioCancer.value = value.toString();
+                                    _.radioCancer.value =
+                                        value.toString();
                                   }),
                               Text("Si"),
                               Radio(
                                   value: "No",
                                   groupValue: _.radioCancer.value,
                                   onChanged: (value) {
-                                    _.radioCancer.value = value.toString();
+                                    _.radioCancer.value =
+                                        value.toString();
                                   }),
                               Text("No"),
                               SizedBox(
                                 width: 20,
                               ),
+                              Expanded(
+                                  flex: 2,
+                                  child: textformfield("Especificar",
+                                      Get.width / 7, _.cancerController))
                             ],
-                          )
+                          ),
+                          
                         ],
                       )),
                       SizedBox(

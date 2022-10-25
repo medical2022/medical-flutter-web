@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:medicinesystem/app/controllers/historiaclinica_controller.dart';
 import 'package:medicinesystem/app/data/auth/auth.dart';
 import 'package:medicinesystem/app/data/models/ConsultaMedica_model.dart';
 import 'package:medicinesystem/app/data/models/Diagnostico_model.dart';
@@ -30,7 +31,7 @@ class ConsultamedicaController extends GetxController
 
   List<DataRow> buildDatarows(TextStyle text) {
     List<DataRow> rows = [];
-
+  if(receta.value.recetas!.length > 0 && receta.value != null){
     receta.value.recetas!.forEach((element) {
       rows.add(DataRow(cells: [
         DataCell(Text(
@@ -61,6 +62,8 @@ class ConsultamedicaController extends GetxController
             child: Text("Eliminar"))),
       ]));
     });
+  }
+    
     return rows;
   }
 
@@ -133,13 +136,13 @@ class ConsultamedicaController extends GetxController
     tabController.addListener(() {
       if (tabController.indexIsChanging) {
         saveConsultaMedica();
-        listMedicamento.value = [];
-        consultaMedica.receta!.recetas!.forEach((element) {
-          if (element.suggestion == true) {
-            listMedicamento.value.add(element.medicamento!);
-          }
-          print(element);
-        });
+        // listMedicamento.value = [];
+        // consultaMedica.receta!.recetas!.forEach((element) {
+        //   if (element.suggestion == true) {
+        //     listMedicamento.value.add(element.medicamento!);
+        //   }
+        //   print(element);
+        // });
       }
     });
   }
@@ -285,13 +288,21 @@ class ConsultamedicaController extends GetxController
   }
 
   buildSave() {
+    Paciente pacien = new Paciente();
     var id = Uuid().v1();
     receta..value.observaciones = observacionesController.text;
     // receta.value.recetas = recetas.value;
+    if (historyClinica.isFirst.value == true) {
+      consultaMedica.idPaciente = historyClinica.select.value.id;
+      consultaMedica.id = historyClinica.select.value.name;
+    }else{
+      consultaMedica.idPaciente = args["paciente"].id;
+      consultaMedica.paciente = args["paciente"].name;
+    }
     consultaMedica.id = id;
-    consultaMedica.idPaciente = args["paciente"].id;
+    
     consultaMedica.evolucion = evolucionController.text;
-    consultaMedica.paciente = args["paciente"].name;
+    
     consultaMedica.frecuenciaCardiaca = frecCardiacaController.text;
     consultaMedica.frecuenciaRespiratoria = frecRespiratoriaController.text;
     consultaMedica.presionArterial = presionArterialController.text;
@@ -332,7 +343,7 @@ class ConsultamedicaController extends GetxController
     var data = await consultaMedicaService.getData(
         id, "ConsultaMedica", args["paciente"].id);
 
-    if (data.data() == null) {
+    if (data == null) {
       consultaMedica.date_of_create = new DateTime.now().year.toString();
       evolucionController.text = "";
       pacienteController.text = "";
@@ -368,50 +379,50 @@ class ConsultamedicaController extends GetxController
       paralavidaController.text = "";
       paralafuncionController.text = "";
     } else {
-      evolucionController.text = data.get("evolucion");
-      pacienteController.text = data.get("paciente");
-      frecCardiacaController.text = data.get("frecuenciaCardiaca");
-      frecRespiratoriaController.text = data.get("frecuenciaRespiratoria");
-      presionArterialController.text = data.get("presionArterial");
-      pesoController.text = data.get("peso");
-      tallaController.text = data.get("talla");
-      perimetroCranealController.text = data.get("perimetroCraneal");
-      perimetroAbdominalController.text = data.get("perimetroAbdominal");
-      oximetriaPulsoController.text = data.get("oximetriaPulso");
-      temperaturaController.text = data.get("temperatura");
-      imcController.text = data.get("IMC");
-      craneoController.text = data.get("craneo");
-      toraxController.text = data.get("torax");
-      oidoController.text = data.get("oido");
-      abdomenController.text = data.get("abdomen");
-      ojosController.text = data.get("ojos");
-      extremidadesController.text = data.get("extremidades");
-      orofaringeController.text = data.get("orofaringe");
-      observacionesController.text = data.get("observaciones");
-      narinasController.text = data.get("narinas");
-      cuelloController.text = data.get("cuello");
-      nerviosCranealesController.text = data.get("nerviosCraneales");
-      tonoMuscularController.text = data.get("tonoMuscular");
-      fuerzaController.text = data.get("fuerza");
-      reflejosController.text = data.get("reflejosOsteotendinosos");
-      sensibilidadController.text = data.get("sensibilidadConservada");
-      marchaController.text = data.get("marcha");
-      estudiosAuxiliaresController.text = data.get("estudiosAuxiliares");
+      evolucionController.text = data.evolucion!;
+      pacienteController.text = data.paciente!;
+      frecCardiacaController.text = data.frecuenciaCardiaca!;
+      frecRespiratoriaController.text = data.frecuenciaRespiratoria!;
+      presionArterialController.text = data.presionArterial!;
+      pesoController.text = data.peso!;
+      tallaController.text = data.talla!;
+      perimetroCranealController.text = data.perimetroCraneal!;
+      perimetroAbdominalController.text = data.perimetroAbdominal!;
+      oximetriaPulsoController.text = data.oximetriaPulso!;
+      temperaturaController.text = data.temperatura!;
+      imcController.text = data.iMC!;
+      craneoController.text = data.craneo!;
+      toraxController.text = data.torax!;
+      oidoController.text = data.oido!;
+      abdomenController.text = data.abdomen!;
+      ojosController.text = data.ojos!;
+      extremidadesController.text = data.extremidades!;
+      orofaringeController.text = data.orofaringe!;
+      observacionesController.text = data.observaciones!;
+      narinasController.text = data.narinas!;
+      cuelloController.text = data.cuello!;
+      nerviosCranealesController.text = data.nerviosCraneales!;
+      tonoMuscularController.text = data.tonoMuscular!;
+      fuerzaController.text = data.fuerza!;
+      reflejosController.text = data.reflejosOsteotendinosos!;
+      sensibilidadController.text = data.sensibilidadConservada!;
+      marchaController.text = data.marcha!;
+      estudiosAuxiliaresController.text = data.estudiosAuxiliares!;
 
-      analisisController.text = data.get("analisisPlan");
-      paralavidaController.text = data.get("paraLaVida");
-      paralafuncionController.text = data.get("paraLaFuncion");
+      analisisController.text = data.analisisPlan!;
+      paralavidaController.text = data.paraLaVida!;
+      paralafuncionController.text = data.paraLaFuncion!;
       // var a =
       //     Diagnostico.fromJson(data.get("diagnostico") as Map<String, dynamic>);
       ;
-      List<Diagnostico> dia = List<Diagnostico>.from(
-          data.get("diagnostico").map((i) => Diagnostico.fromJson(i)));
+      List<Diagnostico> dia = List<Diagnostico>.from(data.diagnostico!
+          .map((i) => Diagnostico.fromJson(i as Map<String, dynamic>)));
       // List<Diagnostico> sd = data.get("diagnostico").cast<Diagnostico>();
       print(dia);
       print(dia[0].diagnostico);
       diagnosticos.value = dia;
 
-      Receta re = Receta.fromJson(data.get("receta"));
+      Receta re = Receta.fromJson(data.receta as Map<String, dynamic>);
       receta.value = re;
       print(receta.value);
       print("==========Sasasas==========");
@@ -443,14 +454,21 @@ class ConsultamedicaController extends GetxController
     }
 
     print("=================================");
-    print(data.data());
+    print(data);
   }
 
+  final historyClinica = Get.put(HistoriaclinicaController());
   saveConsultaMedica() {
     var id = auth.currentUser()!.uid;
     buildSave();
-    consultaMedicaService.save(
-        id, "ConsultaMedica", args["paciente"].id, consultaMedica);
+    print(historyClinica.isFirst.value);
+    if (historyClinica.isFirst.value == true) {
+      consultaMedicaService.save(id, "ConsultaMedica",
+          historyClinica.select.value.id.toString(), consultaMedica);
+    } else {
+      consultaMedicaService.save(
+          id, "ConsultaMedica", args["paciente"].id, consultaMedica);
+    }
   }
 
   //receta

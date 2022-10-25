@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medicinesystem/app/data/auth/auth.dart';
+import 'package:medicinesystem/app/data/models/ConsultaMedica_model.dart';
 
 import 'package:medicinesystem/app/data/models/HistoriaClinica_model.dart';
 import 'package:medicinesystem/app/data/models/Paciente._model.dart';
+import 'package:medicinesystem/app/data/services/ConsultaMedica_service.dart';
 import 'package:medicinesystem/app/data/services/HistoriaClinica_service.dart';
 import 'package:medicinesystem/app/data/services/altapaciente_service.dart';
 import 'package:medicinesystem/app/data/services/api.dart';
@@ -19,7 +21,7 @@ class HistoriaclinicaController extends GetxController
 
   int selectpage = 0;
   AltapacienteService altapacienteService = new AltapacienteService();
-
+  ConsultaMedicaService consultaMedicaService = new ConsultaMedicaService();
   List<Paciente> pacientes = List<Paciente>.empty().obs;
   Rx<RxList<Paciente>> pacien = RxList<Paciente>.empty().obs;
 
@@ -28,21 +30,28 @@ class HistoriaclinicaController extends GetxController
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
+
     print(pacientes);
     tabController =
         TabController(length: 6, initialIndex: selectpage, vsync: this);
+
     tabController.addListener(() {
       if (tabController.indexIsChanging) {
         saveHistoriaMedica();
       }
     });
 
-    pacien.value.value = await altapacienteService.getData(auth.currentUser()!.uid,"pacientes");
+    pacien.value.value =
+        await altapacienteService.getData(auth.currentUser()!.uid, "pacientes");
     print(pacien.value.value);
     select.value = pacien.value.value[0];
     // pacientes.forEach((element) {
     //   print(element.name);
     // });
+    var data = await consultaMedicaService.getData(
+        auth.currentUser()!.uid, "ConsultaMedica", select.value.id.toString());
+    print("==============data================");
+    print(data);
   }
 
   @override
@@ -50,8 +59,6 @@ class HistoriaclinicaController extends GetxController
     // TODO: implement onReady
     super.onReady();
   }
-
-  
 
   //antecedentes heredofamiliares
   TextEditingController malformacionesController = TextEditingController();
@@ -66,7 +73,21 @@ class HistoriaclinicaController extends GetxController
   TextEditingController enuresisController = TextEditingController();
   TextEditingController obesidadController = TextEditingController();
   TextEditingController cancerController = TextEditingController();
-
+  TextEditingController intoleranciaProteinaLecheController =
+      TextEditingController();
+  TextEditingController diarreaRecurrenteController = TextEditingController();
+  TextEditingController faltaIncrementoPesoTallaController = TextEditingController();
+  TextEditingController estrenimientoController = TextEditingController();
+  TextEditingController evaluacionesSanguinolentasController = TextEditingController();
+  TextEditingController problemasDeParasitosisIntestinalController = TextEditingController();
+  TextEditingController infeccionViasUrinariasRecurrentesController = TextEditingController();
+  TextEditingController mojaCamaPorLasNochesController = TextEditingController();
+  TextEditingController dolorAlOrinarController = TextEditingController();
+  TextEditingController perdidaDelCabelloController = TextEditingController();
+  TextEditingController erupcionesRecurrentesEnLaPielController = TextEditingController();
+  TextEditingController pielResecaController = TextEditingController();
+  TextEditingController rinorreHialinaRecurrentController = TextEditingController();
+  TextEditingController hemorragiaDeLaNarinasRecurrentesController = TextEditingController();
   //antecedentes personales no patologicos
   TextEditingController casaHabitacionController = TextEditingController();
   TextEditingController materialdeConstruccionController =
@@ -244,22 +265,22 @@ class HistoriaclinicaController extends GetxController
   TextEditingController observacionesController = TextEditingController();
 
   buildSave() {
-    historiaClinica.malFormaciones = radioMalFormaciones.value;
-    historiaClinica.diabetesMallitus = radioDiabetesMellitus.value;
-    historiaClinica.hipertensionArterial = radioHipertensionArterial.value;
-    historiaClinica.epilepsia = radioEpilepsia.value;
-    historiaClinica.alergia = radioAlergia.value;
-    historiaClinica.asma = radioAsma.value;
-    historiaClinica.lupus = radioLupus.value;
-    historiaClinica.enfermedadRenal = radioEnfermedadRenal.value;
-    historiaClinica.enuresis = radioEnuresis.value;
-    historiaClinica.obesidad = radioObesidad.value;
-    historiaClinica.cancer = radioCancer.value;
+    historiaClinica.malFormaciones = malformacionesController.value.text;
+    historiaClinica.diabetesMallitus = diabetesMellitusController.value.text;
+    historiaClinica.hipertensionArterial = hipertensionArterialController.value.text;
+    historiaClinica.epilepsia = epilepsiaController.value.text;
+    historiaClinica.alergia = alergiaController.value.text;
+    historiaClinica.asma = asmaController.value.text;
+    historiaClinica.lupus = lupusController.value.text;
+    historiaClinica.enfermedadRenal = enfermedadRenalController.value.text;
+    historiaClinica.enuresis = enuresisController.value.text;
+    historiaClinica.obesidad = obesidadController.value.text;
+    historiaClinica.cancer = cancerController.value.text;
     historiaClinica.casaHabitacion = casaHabitacionController.text;
     historiaClinica.materialDeConstruccion =
         materialdeConstruccionController.text;
     historiaClinica.convivenciaConAnimales =
-        radioConvivenciaAnimalesDomesticos.value;
+        convivenciaConAnimalesController.value.text;
     historiaClinica.tabaquismo = radioTabaquismoEnCasa.value;
     historiaClinica.cuadrpDeVacunacion = radioCuadroDeVacunacion.value;
     historiaClinica.alimentacion = alimentacionController.text;
@@ -278,23 +299,26 @@ class HistoriaclinicaController extends GetxController
         controlDeEsfinteresDiaController.text;
     historiaClinica.controlDeEsfinteresNochhe =
         controlDeEsfinteresNocheController.text;
-    historiaClinica.haSidoInternado = radioHaSidoInternado.value;
-    historiaClinica.fracturasPatologicos = radioFracturasPatologicos.value;
-    historiaClinica.transfusionesSanguineas =
-        radioTransfusionesSanguineos.value;
 
-    historiaClinica.alergiasAlimentos = radioAlergiasAlimentos.value;
-    historiaClinica.infeccionesViasAereas = radioInfeccionesViasAreas.value;
+    historiaClinica.haSidoInternado = haSidoInternadoController.value.text;
+    historiaClinica.fracturasPatologicos = fracturasPatologicosController.value.text;
+    historiaClinica.transfusionesSanguineas =
+        transfusionesSanguineasController.value.text;
+
+    historiaClinica.alergiasAlimentos = alergiasAlimentosController.value.text;
+    historiaClinica.infeccionesViasAereas = infeccionesViasAereasController.value.text;
     historiaClinica.infeccionesViasUrinarias =
-        radioInfeccionesViasUrinarias.value;
-    historiaClinica.reaccionesVacuna = radioReaccionesVacuna.value;
-    historiaClinica.crisisConvulsivas = radioCrisisConvulsivasPatalogicos.value;
-    historiaClinica.reflujoGastroesofagico = radioReflujoGastroesofagico.value;
+        infeccionesViasUrinariasController.value.text;
+    historiaClinica.reaccionesVacuna = reaccionesVacunaController.value.text;
+    historiaClinica.crisisConvulsivas = crisisConvulsivasPatologicosController.value.text;
+    historiaClinica.reflujoGastroesofagico = reflujoGastroesofagicoController.value.text;
     historiaClinica.alcoholismo = radioAlcoholismo.value;
     historiaClinica.tabaquismo = radioTabaquismo.value;
     historiaClinica.drogas = radioDrogas.value;
     historiaClinica.inicioDeVidaSexual = inicioDeVidaSexualController.text;
     historiaClinica.numeroDeParejas = numeroDeParejasController.text;
+
+
     historiaClinica.numeroDeEmbarazo = numeroDeEmbarazoController.text;
     historiaClinica.visitaMedicoDuranteEmbarazo =
         visitaMedicoDuranteEmbarazoController.text;
@@ -318,63 +342,77 @@ class HistoriaclinicaController extends GetxController
     historiaClinica.vitaminaK = radioVitaminaK.value;
     historiaClinica.vitaminaA = radioVitaminaA.value;
     historiaClinica.perinatales = perinatalesController.text;
+
+
     historiaClinica.traumatismoCraneoencefalico =
-        radioTraumatismoCraneoencefalico.value;
-    historiaClinica.cefaleaRecurrente = radioCefaleaRecurrente.value;
-    historiaClinica.crisisConvulsivas = radioCrisisConvulsivasPatalogicos.value;
+        traumatismoCraneoencefalicoController.value.text;
+    historiaClinica.cefaleaRecurrente = cefaleaRecurrenteController.value.text;
+    historiaClinica.crisisConvulsivas = crisisConvulsivasPatologicosController.value.text;
     historiaClinica.crisisConvulsivasNeuroesqueletico =
-        radioCrisisConvulsivasNeuroesqueletico.value;
-    historiaClinica.alteracionMarcha = radioAlteracionMarcha.value;
-    historiaClinica.perdidaConocimiento = radioPerdidaConocimiento.value;
-    historiaClinica.problemasDeConducta = radioProblemasDeConducta.value;
+        crisisConvulsivasNeuroesqueleticoController.value.text;
+    historiaClinica.alteracionMarcha = alteracionMarchaController.value.text;
+    historiaClinica.perdidaConocimiento = perdidaConocimientoController.value.text;
+    historiaClinica.problemasDeConducta = problemasDeConductaController.value.text;
     historiaClinica.fracturasNeuroesqueletico =
-        radioFracturasNeuroesqueletico.value;
-    historiaClinica.asma = radioAsma.value;
-    historiaClinica.cardioPasma = radioCardioPasma.value;
-    historiaClinica.infeccionesViasAereas =
-        radioCardioPInfeccioneViasAreas.value;
+        fracturasNeuroesqueleticoController.value.text;
+    historiaClinica.asma = asmaController.text;
+    historiaClinica.cardioPasma = cardioPasmaController.value.text;
+    
     historiaClinica.cardioPDificultadRespirarAlCaminarLargos =
-        radioCardioPDificultadRespirarAlCaminarLargos.value;
+        cardioPDificultadRespirarAlCaminarLargosController.value.text;
     historiaClinica.cardioPDificultadRespirarAlCaminarPequenas =
-        radioCardioPDificultadRespirarAlCaminarPequenas.value;
+        cardioPDificultadRespirarAlCaminarPequenasController.value.text;
     historiaClinica.cardioPInfeccioneViasAreas =
-        radioCardioPInfeccioneViasAreas.value;
-    historiaClinica.infeccionesViasAereas = radioInfeccionesViasAreas.value;
-    historiaClinica.cardioPCianosis = radioCardioPCianosis.value;
+        cardioPInfeccioneViasAreasController.value.text;
+    historiaClinica.infeccionesViasAereas = infeccionesViasAereasController.value.text;
+    historiaClinica.cardioPCianosis = cardioPCianosis.text;
     historiaClinica.cardioPMalformacionCardiaca =
-        radioCardioPMalformacionCardiaca.value;
-    historiaClinica.reflujoGastroesofagico = radioReflujoGastroesofagico.value;
+        cardioPMalformacionCardiaca.text;
+    historiaClinica.reflujoGastroesofagico = reflujoGastroesofagicoController.value.text;
     historiaClinica.intoleranciaProteinaLeche =
-        radioIntoleranciaProteinaLeche.value;
-    historiaClinica.diarreaRecurrente = radioDiarreaRecurrente.value;
+        intoleranciaProteinaLecheController.value.text;
+    historiaClinica.diarreaRecurrente = diarreaRecurrenteController.value.text;
     historiaClinica.faltaDeIncrementoPesoTalla =
-        radioFaltaIncrementoPesoTalla.value;
-    historiaClinica.estrenimiento = radioEstrenimiento.value;
+        faltaIncrementoPesoTallaController.value.text;
+    historiaClinica.estrenimiento = estrenimientoController.value.text;
     historiaClinica.evacuacionesSanguinolentas =
-        radioEvaluacionesSanguinolentas.value;
+        evaluacionesSanguinolentasController.value.text;
     historiaClinica.problemasDeParasitosis =
-        radioProblemasParasitosisIntestinal.value;
+        problemasDeParasitosisIntestinalController.value.text;
     historiaClinica.cursadoInfeccionViasUrinarias =
-        radioInfeccionViasUrinariasRecurrentes.value;
-    historiaClinica.mojaCamaNoches = radioMojaLaCamaNoches.value;
-    historiaClinica.dolorAlOrinar = radioDolorAlOrinar.value;
-    historiaClinica.perdidaDelCabello = radioErupcionesRecurrentesPiel.value;
+        infeccionViasUrinariasRecurrentesController.value.text;
+    historiaClinica.mojaCamaNoches = mojaCamaPorLasNochesController.value.text;
+    historiaClinica.dolorAlOrinar = dolorAlOrinarController.value.text;
+    historiaClinica.perdidaDelCabello = perdidaDelCabelloController.value.text;
     historiaClinica.erupcionesRecurrentePiel =
-        radioErupcionesRecurrentesPiel.value;
-    historiaClinica.pielReseca = radioPielReseca.value;
+        erupcionesRecurrentesEnLaPielController.value.text;
+    historiaClinica.pielReseca = pielResecaController.value.text;
     historiaClinica.rinorreaHialinaRecurrente =
-        radioRinorreaHialinaRecurrente.value;
+        rinorreHialinaRecurrentController.value.text;
     historiaClinica.hemorragiaNarinasRecurrentes =
-        radioHemorragiaNarinasRecurrentes.value;
+        hemorragiaDeLaNarinasRecurrentesController.value.text;
     historiaClinica.narinasObservaciones = observacionesController.text;
     historiaClinica.tabauismo = radioTabaquismoEnCasa.value;
   }
 
+  RxBool isFirst = false.obs;
   setData() async {
+    print(select.value.id.toString());
+    try {
+      var datas = await consultaMedicaService.getData(auth.currentUser()!.uid,
+          "ConsultaMedica", select.value.id.toString());
+      print("===========data=============");
+      isFirst.value = false;
+    } catch (e) {
+      print(e);
+      print("es null");
+      isFirst.value = true;
+    }
+
     var id = auth.currentUser()!.uid;
     var data = await historiaClinicaService.getData(
         id, "historiaClinica", select.value.email!);
-    print(data.data() );
+    print(data.data());
     if (data.data() == null) {
       print("joel");
       radioMalFormaciones.value = "";
@@ -391,10 +429,8 @@ class HistoriaclinicaController extends GetxController
       radioObesidad.value = "";
       radioCancer.value = "";
       casaHabitacionController.text = "";
-      materialdeConstruccionController.text =
-          "";
-      radioConvivenciaAnimalesDomesticos.value =
-          "";
+      materialdeConstruccionController.text = "";
+      radioConvivenciaAnimalesDomesticos.value = "";
       radioTabaquismoEnCasa.value = "";
       radioCuadroDeVacunacion.value = "";
 
@@ -409,18 +445,15 @@ class HistoriaclinicaController extends GetxController
       frasesExpresionesController.text = "";
       bebeDeLaTazaController.text = "";
       seVisteSoloController.text = "";
-      controlDeEsfinteresDiaController.text =
-          "";
-      controlDeEsfinteresNocheController.text =
-          "";
+      controlDeEsfinteresDiaController.text = "";
+      controlDeEsfinteresNocheController.text = "";
       radioHaSidoInternado.value = "";
       radioFracturasPatologicos.value = "";
       radioTransfusionesSanguineos.value = "";
 
       radioAlergiasAlimentos.value = "";
       radioInfeccionesViasAreas.value = "";
-      radioInfeccionesViasUrinarias.value =
-          "";
+      radioInfeccionesViasUrinarias.value = "";
       radioReaccionesVacuna.value = "";
 
       radioCrisisConvulsivasPatalogicos.value = "";
@@ -431,14 +464,12 @@ class HistoriaclinicaController extends GetxController
       inicioDeVidaSexualController.text = "";
       numeroDeParejasController.text = "";
       numeroDeEmbarazoController.text = "";
-      visitaMedicoDuranteEmbarazoController.text =
-          "";
+      visitaMedicoDuranteEmbarazoController.text = "";
       radioAmenazaDeAborto.value = "";
       radioNinoDeseado.value = "";
       radioNinoPlaneado.value = "";
       radioComplicacionDuranteEmbarazo.value = "";
-      semanasDeGestacionNacimientoController.text =
-          "";
+      semanasDeGestacionNacimientoController.text = "";
       tipoDePartoController.text = "";
       pesoAlNacerController.text = "";
       tallaAlNacerController.text = "";
@@ -453,49 +484,34 @@ class HistoriaclinicaController extends GetxController
       radioVitaminaK.value = "";
       radioVitaminaA.value = "";
       perinatalesController.text = "";
-      radioTraumatismoCraneoencefalico.value =
-          "";
+      radioTraumatismoCraneoencefalico.value = "";
       radioCefaleaRecurrente.value = "";
-      radioCrisisConvulsivasNeuroesqueletico.value =
-          "";
+      radioCrisisConvulsivasNeuroesqueletico.value = "";
       radioAlteracionMarcha.value = "";
       radioPerdidaConocimiento.value = "";
       radioProblemasDeConducta.value = "";
-      radioFracturasNeuroesqueletico.value =
-          "";
+      radioFracturasNeuroesqueletico.value = "";
       radioCardioPasma.value = "";
-      radioCardioPInfeccioneViasAreas.value =
-          "";
-      radioCardioPDificultadRespirarAlCaminarLargos.value =
-          "";
-      radioCardioPDificultadRespirarAlCaminarPequenas.value =
-          "";
+      radioCardioPInfeccioneViasAreas.value = "";
+      radioCardioPDificultadRespirarAlCaminarLargos.value = "";
+      radioCardioPDificultadRespirarAlCaminarPequenas.value = "";
       radioCardioPCianosis.value = "";
-      radioCardioPMalformacionCardiaca.value =
-          "";
+      radioCardioPMalformacionCardiaca.value = "";
 
-      radioIntoleranciaProteinaLeche.value =
-          "";
+      radioIntoleranciaProteinaLeche.value = "";
       radioDiarreaRecurrente.value = "";
-      radioFaltaIncrementoPesoTalla.value =
-          "";
+      radioFaltaIncrementoPesoTalla.value = "";
       radioEstrenimiento.value = "";
-      radioEvaluacionesSanguinolentas.value =
-          "";
-      radioProblemasParasitosisIntestinal.value =
-          "";
-      radioInfeccionViasUrinariasRecurrentes.value =
-          "";
+      radioEvaluacionesSanguinolentas.value = "";
+      radioProblemasParasitosisIntestinal.value = "";
+      radioInfeccionViasUrinariasRecurrentes.value = "";
       radioMojaLaCamaNoches.value = "";
       radioDolorAlOrinar.value = "";
       radioErupcionesRecurrentesPiel.value = "";
-      radioErupcionesRecurrentesPiel.value =
-          "";
+      radioErupcionesRecurrentesPiel.value = "";
       radioPielReseca.value = "";
-      radioRinorreaHialinaRecurrente.value =
-          "";
-      radioHemorragiaNarinasRecurrentes.value =
-          "";
+      radioRinorreaHialinaRecurrente.value = "";
+      radioHemorragiaNarinasRecurrentes.value = "";
       observacionesController.text = "";
     } else {
       radioMalFormaciones.value = data.get("malFormaciones");
@@ -619,8 +635,6 @@ class HistoriaclinicaController extends GetxController
           data.get("hemorragiaNarinasRecurrentes");
       observacionesController.text = data.get("narinasObservaciones");
     }
-
-   
   }
 
   saveHistoriaMedica() {

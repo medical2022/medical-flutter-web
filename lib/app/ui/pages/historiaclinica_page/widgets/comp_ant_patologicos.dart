@@ -21,17 +21,19 @@ class _PatologicosViewState extends State<PatologicosView> {
         init: HistoriaclinicaController(),
         builder: (_) {
           return SingleChildScrollView(
-            child: Obx(()=> Column(
+              child: Obx(
+            () => Column(
               children: [
                 Divider(
                   height: 10,
                 ),
                 Align(
-                    alignment: Alignment.centerLeft,
-                    child:  Text(
-                      "ANTECEDENTES PERSONALES PATOLÓGICOS",
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "ANTECEDENTES PERSONALES PATOLÓGICOS",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
                 SizedBox(
                   height: 20,
                 ),
@@ -42,29 +44,57 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Ha sido internado anteriormente", style: TextStyle(fontSize: 18))),
+                            child: Text("Ha sido internado anteriormente",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
                                 value: "Si",
                                 groupValue: _.radioHaSidoInternado.value,
                                 onChanged: (value) {
-                                  _.radioHaSidoInternado.value = value.toString();
+                                  _.radioHaSidoInternado.value =
+                                      value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
                                 groupValue: _.radioHaSidoInternado.value,
                                 onChanged: (value) {
-                                  _.radioHaSidoInternado.value = value.toString();
+                                  _.radioHaSidoInternado.value =
+                                      value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
                               width: 20,
                             ),
-                           
+                            Expanded(
+                                flex: 2,
+                                child: textformfield("Especificar",
+                                    Get.width / 7, _.haSidoInternadoController))
                           ],
-                        )
+                        ),
+                        // Row(
+                        //   children: [
+                        //     Radio(
+                        //         value: "Si",
+                        //         groupValue: _.radioHaSidoInternado.value,
+                        //         onChanged: (value) {
+                        //           _.radioHaSidoInternado.value = value.toString();
+                        //         }),
+                        //     Text("Si"),
+                        //     Radio(
+                        //         value: "No",
+                        //         groupValue: _.radioHaSidoInternado.value,
+                        //         onChanged: (value) {
+                        //           _.radioHaSidoInternado.value = value.toString();
+                        //         }),
+                        //     Text("No"),
+                        //     SizedBox(
+                        //       width: 20,
+                        //     ),
+
+                        //   ],
+                        // )
                       ],
                     )),
                     SizedBox(
@@ -75,35 +105,44 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child:
-                                Text("Fracturas", style: TextStyle(fontSize: 18))),
+                            child: Text("Fracturas",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
                                 value: "Si",
                                 groupValue: _.radioFracturasPatologicos.value,
                                 onChanged: (value) {
-                                  _.radioFracturasPatologicos.value = value.toString();
+                                  _.radioFracturasPatologicos.value =
+                                      value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
                                 groupValue: _.radioFracturasPatologicos.value,
                                 onChanged: (value) {
-                                  _.radioFracturasPatologicos.value = value.toString();
+                                  _.radioFracturasPatologicos.value =
+                                      value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
                               width: 20,
                             ),
-                           
+                            Expanded(
+                                flex: 2,
+                                child: textformfield(
+                                    "Especificar",
+                                    Get.width / 7,
+                                    _.fracturasPatologicosController))
                           ],
-                        )
+                        ),
                       ],
                     )),
                   ],
                 ),
-                SizedBox(height: 2.h,),
+                SizedBox(
+                  height: 2.h,
+                ),
                 Row(
                   children: [
                     Expanded(
@@ -111,29 +150,39 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Transfusiones sanguíneas", style: TextStyle(fontSize: 18))),
+                            child: Text("Transfusiones sanguíneas",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: _.radioTransfusionesSanguineos.value,
+                                groupValue:
+                                    _.radioTransfusionesSanguineos.value,
                                 onChanged: (value) {
-                                  _.radioTransfusionesSanguineos.value = value.toString();
+                                  _.radioTransfusionesSanguineos.value =
+                                      value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: _.radioTransfusionesSanguineos.value,
+                                groupValue:
+                                    _.radioTransfusionesSanguineos.value,
                                 onChanged: (value) {
-                                  _.radioTransfusionesSanguineos.value = value.toString();
+                                  _.radioTransfusionesSanguineos.value =
+                                      value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
                               width: 20,
                             ),
-                           
+                            Expanded(
+                                flex: 2,
+                                child: textformfield(
+                                    "Especificar",
+                                    Get.width / 7,
+                                    _.transfusionesSanguineasController))
                           ],
-                        )
+                        ),
                       ],
                     )),
                     SizedBox(
@@ -144,35 +193,44 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child:
-                                Text("Alergias a medicamentos", style: TextStyle(fontSize: 18))),
+                            child: Text("Alergias a medicamentos",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
                                 value: "Si",
                                 groupValue: _.radioAlergiasMedicamentos.value,
                                 onChanged: (value) {
-                                  _.radioAlergiasMedicamentos.value = value.toString();
+                                  _.radioAlergiasMedicamentos.value =
+                                      value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
                                 groupValue: _.radioAlergiasMedicamentos.value,
                                 onChanged: (value) {
-                                  _.radioAlergiasMedicamentos.value = value.toString();
+                                  _.radioAlergiasMedicamentos.value =
+                                      value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
                               width: 20,
                             ),
-                           
+                            Expanded(
+                                flex: 2,
+                                child: textformfield(
+                                    "Especificar",
+                                    Get.width / 7,
+                                    _.alergiasMedicamentosController))
                           ],
-                        )
+                        ),
                       ],
                     )),
                   ],
                 ),
-                SizedBox(height: 2.h,),
+                SizedBox(
+                  height: 2.h,
+                ),
                 Row(
                   children: [
                     Expanded(
@@ -180,29 +238,40 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Alergias a alimentos", style: TextStyle(fontSize: 18))),
+                            child: Text("Alergias a alimentos",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: _.radioAlergiasAlimentos.value,
+                                groupValue:
+                                    _.radioAlergiasAlimentos.value,
                                 onChanged: (value) {
-                                  _.radioAlergiasAlimentos.value = value.toString();
+                                  _.radioAlergiasAlimentos.value =
+                                      value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: _.radioAlergiasAlimentos.value,
+                                groupValue:
+                                    _.radioAlergiasAlimentos.value,
                                 onChanged: (value) {
-                                  _.radioAlergiasAlimentos.value = value.toString();
+                                  _.radioAlergiasAlimentos.value =
+                                      value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
                               width: 20,
                             ),
-                           
+                            Expanded(
+                                flex: 2,
+                                child: textformfield(
+                                    "Especificar",
+                                    Get.width / 7,
+                                    _.alergiasAlimentosController))
                           ],
-                        )
+                        ),
+                        
                       ],
                     )),
                     SizedBox(
@@ -213,35 +282,47 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child:
-                                Text("Infecciones de vias aéreas superiores", style: TextStyle(fontSize: 18))),
+                            child: Text("Infecciones de vias aéreas superiores",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: _.radioInfeccionesViasAreas.value,
+                                groupValue:
+                                    _.radioInfeccionesViasAreas.value,
                                 onChanged: (value) {
-                                  _.radioInfeccionesViasAreas.value = value.toString();
+                                  _.radioInfeccionesViasAreas.value =
+                                      value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: _.radioInfeccionesViasAreas.value,
+                                groupValue:
+                                    _.radioInfeccionesViasAreas.value,
                                 onChanged: (value) {
-                                  _.radioInfeccionesViasAreas.value = value.toString();
+                                  _.radioInfeccionesViasAreas.value =
+                                      value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
                               width: 20,
                             ),
-                           
+                            Expanded(
+                                flex: 2,
+                                child: textformfield(
+                                    "Especificar",
+                                    Get.width / 7,
+                                    _.infeccionesViasAereasController))
                           ],
-                        )
+                        ),
+                        
                       ],
                     )),
                   ],
                 ),
-                SizedBox(height: 2.h,),
+                SizedBox(
+                  height: 2.h,
+                ),
                 Row(
                   children: [
                     Expanded(
@@ -249,29 +330,40 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Infecciones de vías urinarias", style: TextStyle(fontSize: 18))),
+                            child: Text("Infecciones de vías urinarias",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: _.radioInfeccionesViasUrinarias.value,
+                                groupValue:
+                                    _.radioInfeccionesViasUrinarias.value,
                                 onChanged: (value) {
-                                  _.radioInfeccionesViasUrinarias.value = value.toString();
+                                  _.radioInfeccionesViasUrinarias.value =
+                                      value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: _.radioInfeccionesViasUrinarias.value,
+                                groupValue:
+                                    _.radioInfeccionesViasUrinarias.value,
                                 onChanged: (value) {
-                                  _.radioInfeccionesViasUrinarias.value = value.toString();
+                                  _.radioInfeccionesViasUrinarias.value =
+                                      value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
                               width: 20,
                             ),
-                           
+                            Expanded(
+                                flex: 2,
+                                child: textformfield(
+                                    "Especificar",
+                                    Get.width / 7,
+                                    _.infeccionesViasUrinariasController))
                           ],
-                        )
+                        ),
+                        
                       ],
                     )),
                     SizedBox(
@@ -282,35 +374,47 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child:
-                                Text("Reacciones a la vacuna", style: TextStyle(fontSize: 18))),
+                            child: Text("Reacciones a la vacuna",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: _.radioReaccionesVacuna.value,
+                                groupValue:
+                                    _.radioReaccionesVacuna.value,
                                 onChanged: (value) {
-                                  _.radioReaccionesVacuna.value = value.toString();
+                                  _.radioReaccionesVacuna.value =
+                                      value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: _.radioReaccionesVacuna.value,
+                                groupValue:
+                                    _.radioReaccionesVacuna.value,
                                 onChanged: (value) {
-                                  _.radioReaccionesVacuna.value = value.toString();
+                                  _.radioReaccionesVacuna.value =
+                                      value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
                               width: 20,
                             ),
-                           
+                            Expanded(
+                                flex: 2,
+                                child: textformfield(
+                                    "Especificar",
+                                    Get.width / 7,
+                                    _.reaccionesVacunaController))
                           ],
-                        )
+                        ),
+                        
                       ],
                     )),
                   ],
                 ),
-                SizedBox(height: 2.h,),
+                SizedBox(
+                  height: 2.h,
+                ),
                 Row(
                   children: [
                     Expanded(
@@ -318,29 +422,40 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Crisis convulsivas", style: TextStyle(fontSize: 18))),
+                            child: Text("Crisis convulsivas",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: _.radioCrisisConvulsivasPatalogicos.value,
+                                groupValue:
+                                    _.radioCrisisConvulsivasPatalogicos.value,
                                 onChanged: (value) {
-                                  _.radioCrisisConvulsivasPatalogicos.value = value.toString();
+                                  _.radioCrisisConvulsivasPatalogicos.value =
+                                      value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: _.radioCrisisConvulsivasPatalogicos.value,
+                                groupValue:
+                                    _.radioCrisisConvulsivasPatalogicos.value,
                                 onChanged: (value) {
-                                  _.radioCrisisConvulsivasPatalogicos.value = value.toString();
+                                  _.radioCrisisConvulsivasPatalogicos.value =
+                                      value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
                               width: 20,
                             ),
-                           
+                            Expanded(
+                                flex: 2,
+                                child: textformfield(
+                                    "Especificar",
+                                    Get.width / 7,
+                                    _.crisisConvulsivasPatologicosController))
                           ],
-                        )
+                        ),
+                        
                       ],
                     )),
                     SizedBox(
@@ -351,47 +466,59 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child:
-                                Text("Reflujo gastroesofágico", style: TextStyle(fontSize: 18))),
+                            child: Text("Reflujo gastroesofágico",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
                                 value: "Si",
-                                groupValue: _.radioReflujoGastroesofagico.value,
+                                groupValue:
+                                    _.radioReflujoGastroesofagico.value,
                                 onChanged: (value) {
-                                  _.radioReflujoGastroesofagico.value = value.toString();
+                                  _.radioReflujoGastroesofagico.value =
+                                      value.toString();
                                 }),
                             Text("Si"),
                             Radio(
                                 value: "No",
-                                groupValue: _.radioReflujoGastroesofagico.value,
+                                groupValue:
+                                    _.radioReflujoGastroesofagico.value,
                                 onChanged: (value) {
-                                  _.radioReflujoGastroesofagico.value = value.toString();
+                                  _.radioReflujoGastroesofagico.value =
+                                      value.toString();
                                 }),
                             Text("No"),
                             SizedBox(
                               width: 20,
                             ),
-                           
+                            Expanded(
+                                flex: 2,
+                                child: textformfield(
+                                    "Especificar",
+                                    Get.width / 7,
+                                    _.reflujoGastroesofagicoController))
                           ],
-                        )
+                        ),
+                        
                       ],
                     )),
                   ],
                 ),
-                SizedBox(height: 2.h,),
+                SizedBox(
+                  height: 2.h,
+                ),
                 Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Adolescentes (Pacientes mayores de 13 años",
-                    style: TextStyle(
-                        fontSize: 19,
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold),
-                  )),
-              SizedBox(
-                height: 2.h,
-              ),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Adolescentes (Pacientes mayores de 13 años",
+                      style: TextStyle(
+                          fontSize: 19,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold),
+                    )),
+                SizedBox(
+                  height: 2.h,
+                ),
                 Row(
                   children: [
                     Expanded(
@@ -399,7 +526,8 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Alcoholismo", style: TextStyle(fontSize: 18))),
+                            child: Text("Alcoholismo",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
@@ -419,7 +547,6 @@ class _PatologicosViewState extends State<PatologicosView> {
                             SizedBox(
                               width: 20,
                             ),
-                           
                           ],
                         )
                       ],
@@ -432,8 +559,8 @@ class _PatologicosViewState extends State<PatologicosView> {
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
-                            child:
-                                Text("Tabaquismo", style: TextStyle(fontSize: 18))),
+                            child: Text("Tabaquismo",
+                                style: TextStyle(fontSize: 18))),
                         Row(
                           children: [
                             Radio(
@@ -453,14 +580,15 @@ class _PatologicosViewState extends State<PatologicosView> {
                             SizedBox(
                               width: 20,
                             ),
-                           
                           ],
                         )
                       ],
                     )),
                   ],
                 ),
-                SizedBox(height: 2.h,),
+                SizedBox(
+                  height: 2.h,
+                ),
                 Row(
                   children: [
                     Expanded(
@@ -489,7 +617,6 @@ class _PatologicosViewState extends State<PatologicosView> {
                             SizedBox(
                               width: 20,
                             ),
-                           
                           ],
                         )
                       ],
@@ -508,7 +635,9 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Expanded(
                                 flex: 2,
-                                child: textformfield("Especificar", Get.width / 7,
+                                child: textformfield(
+                                    "Especificar",
+                                    Get.width / 7,
                                     _.inicioDeVidaSexualController))
                           ],
                         )
@@ -516,7 +645,9 @@ class _PatologicosViewState extends State<PatologicosView> {
                     )),
                   ],
                 ),
-                SizedBox(height: 2.h,),
+                SizedBox(
+                  height: 2.h,
+                ),
                 Row(
                   children: [
                     Expanded(
@@ -530,8 +661,8 @@ class _PatologicosViewState extends State<PatologicosView> {
                           children: [
                             Expanded(
                                 flex: 2,
-                                child: textformfield("Especificar", Get.width / 7,
-                                    _.numeroDeParejasController))
+                                child: textformfield("Especificar",
+                                    Get.width / 7, _.numeroDeParejasController))
                           ],
                         )
                       ],
@@ -541,18 +672,16 @@ class _PatologicosViewState extends State<PatologicosView> {
                     ),
                     Expanded(
                         child: Column(
-                      children: [
-                        
-                         
-                      ],
+                      children: [],
                     )),
                   ],
                 ),
-                SizedBox(height: 2.h,),
-                
+                SizedBox(
+                  height: 2.h,
+                ),
               ],
-            ),)
-          );
+            ),
+          ));
         });
   }
 }

@@ -13,6 +13,7 @@ class Desktopbody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController conS = ScrollController();
     var con = Get.put(ConsultaController());
     return Navbartop(
       widget: Column(
@@ -42,6 +43,51 @@ class Desktopbody extends StatelessWidget {
               )
             ],
           ),
+          Scrollbar(
+                    scrollbarOrientation: ScrollbarOrientation.top,
+                    controller: conS,
+                    child: SingleChildScrollView(
+                      controller: conS,
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      child: Container(
+                          margin: EdgeInsets.only(bottom: 32),
+                          width: Get.width,
+                          child: 
+                                 Obx(()=> DataTable(
+                                    columns: <DataColumn>[
+                                      DataColumn(
+                                          label: Text("PACIENTE",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineSmall)),
+                                      DataColumn(
+                                          label: Text("Evolución",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineSmall)),
+                                      DataColumn(
+                                          label: Text("Fecha de creación",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineSmall)),
+                                      
+                                      DataColumn(
+                                          label: Text("ACCIONES",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineSmall)),
+                                    ],
+                                    rows: con.buildDatarows(
+                                        
+                                        Theme.of(context)
+                                            .textTheme
+                                            .labelSmall!),
+                                 ))
+                            
+                          )),
+                    
+                  ),
           Container(
               margin: EdgeInsets.only(bottom: 32),
               width: Get.width,

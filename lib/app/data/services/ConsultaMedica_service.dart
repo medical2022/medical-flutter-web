@@ -33,9 +33,12 @@ class ConsultaMedicaService {
             fontSize: 16.0));
   }
 
-  Future<DocumentSnapshot<Object?>> getData(
-      String id, String collection, String idDoc) {
-    return api.getDocumentByIdDoc(id, collection, idDoc);
+  Future<ConsultaMedica> getData(
+      String id, String collection, String idDoc) async {
+    final data = await api.getDocumentByIdDoc(id, collection, idDoc);
+
+    ConsultaMedica consultaMedica = ConsultaMedica.fromJson(data.data() as Map<String, dynamic>);
+    return consultaMedica;
   }
 
   Future<List<ConsultaMedica>> getDataList(String id, String collection) async {

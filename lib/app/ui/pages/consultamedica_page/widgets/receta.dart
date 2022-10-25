@@ -131,17 +131,17 @@ class RecetaView extends StatelessWidget {
                             Theme.of(context).textTheme.labelSmall!),
                       ))),
               SizedBox(
-                width: 20,
+                height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  textformfield("Observaciones", Get.width / 7,
-                      con.observacionesController),
-                  ElevatedButton(
-                      onPressed: () {}, child: Text("Recetas anteriores")),
-                ],
-              )
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     textformfield("Observaciones", Get.width / 7,
+              //         con.observacionesController),
+              //     ElevatedButton(
+              //         onPressed: () {}, child: Text("Recetas anteriores")),
+              //   ],
+              // )
             ],
           );
         });

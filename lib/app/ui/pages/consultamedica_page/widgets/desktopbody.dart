@@ -136,66 +136,74 @@ class Desktopbody extends StatelessWidget {
                 ),
               ],
             ),
-            Column(
-              children: [
-                TabBar(
-                    controller: _.tabController,
-                    isScrollable: true,
-                    labelColor: Colors.black,
-                    tabs: [
-                      Tab(
-                        text: "Evolución",
-                      ),
-                      Tab(
-                        text: "Signos Vitales",
-                      ),
-                      Tab(
-                        text: "Exploración Física",
-                      ),
-                      Tab(
-                        text: "Estudios Aux",
-                      ),
-                      Tab(
-                        text: "Diagnóstico",
-                      ),
-                      Tab(
-                        text: "Análisis y Plan",
-                      ),
-                      Tab(
-                        text: "Pronóstico",
-                      ),
-                      Tab(
-                        text: "Solicitudes",
-                      ),
-                      Tab(
-                        text: "Receta",
-                      ),
-                      Tab(
-                        text: "Interconsulta",
-                      ),
-                      Tab(
-                        text: "Gráficas",
-                      ),
-                    ]),
-                Container(
-                  height: Get.height,
-                  width: Get.width,
-                  child: TabBarView(controller: _.tabController, children: [
-                    EvolucionView(),
-                    SignosvitalesView(),
-                    ExploracionfisicaView(),
-                    EstudiosauxView(),
-                    DiagnosticoView(),
-                    AnalisisplanView(),
-                    PronosticoView(),
-                    SolicitudesView(),
-                    RecetaView(),
-                    InterconsultaView(),
-                    Text("ASDASDASWWWWWWWWWWWWWWWWWWW"),
-                  ]),
-                )
-              ],
-            ),
+            SingleChildScrollView(
+                primary: _.selectpage == 1,
+                child: Column(
+                  children: [
+                    TabBar(
+                        controller: _.tabController,
+                        isScrollable: true,
+                        indicator: UnderlineTabIndicator(
+                          borderSide: BorderSide(color: Colors.blue,width: 2),
+                          
+                        ),
+                        labelColor: Colors.black,
+                        tabs: [
+                          Tab(
+                            text: "Evolución",
+                          ),
+                          Tab(
+                            text: "Signos Vitales",
+                          ),
+                          Tab(
+                            text: "Exploración Física",
+                          ),
+                          Tab(
+                            text: "Estudios Aux",
+                          ),
+                          Tab(
+                            text: "Diagnóstico",
+                          ),
+                          Tab(
+                            text: "Análisis y Plan",
+                          ),
+                          Tab(
+                            text: "Pronóstico",
+                          ),
+                          Tab(
+                            text: "Solicitudes",
+                          ),
+                          Tab(
+                            text: "Receta",
+                          ),
+                          Tab(
+                            text: "Interconsulta",
+                          ),
+                          Tab(
+                            text: "Gráficas",
+                          ),
+                        ]),
+                    Container(
+                      height: Get.height,
+                      width: Get.width,
+                      child: TabBarView(controller: _.tabController, children: [
+                        EvolucionView(),
+                        SignosvitalesView(),
+                        ExploracionfisicaView(),
+                        EstudiosauxView(),
+                        DiagnosticoView(),
+                        AnalisisplanView(),
+                        PronosticoView(),
+                        SolicitudesView(),
+                        RecetaView(),
+                        InterconsultaView(),
+                        Text("ASDASDASWWWWWWWWWWWWWWWWWWW"),
+                      ]),
+                    )
+                  ],
+                ),
+              ),
+          
           ],
         );
       },
