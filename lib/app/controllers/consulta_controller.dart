@@ -107,6 +107,7 @@ class ConsultaController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     print("===================================");
+    print("get data of medical consultations ");
     // var valor = await consultaMedicaService.getDataList(
     //     auth.currentUser()!.uid, "ConsultaMedica");
     // print(valor);

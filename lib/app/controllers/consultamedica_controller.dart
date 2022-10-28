@@ -30,47 +30,51 @@ class ConsultamedicaController extends GetxController
   Rx<Receta> receta = Receta().obs;
 
   List<DataRow> buildDatarows(TextStyle text) {
+    print("=========llenar tabla de recetas======");
     List<DataRow> rows = [];
-  if(receta.value.recetas!.length > 0 && receta.value != null){
-    receta.value.recetas!.forEach((element) {
-      rows.add(DataRow(cells: [
-        DataCell(Text(
-          "${element.medicamento}",
-          style: text,
-        )),
-        DataCell(Text(
-          "${element.dosis}",
-          style: text,
-        )),
-        DataCell(Text(
-          "${element.frecuencia}",
-          style: text,
-        )),
-        DataCell(Text(
-          "${element.duracion}",
-          style: text,
-        )),
-        DataCell(Text(
-          "${element.via}",
-          style: text,
-        )),
-        DataCell(ElevatedButton(
-            onPressed: () {
-              removeElement(receta.value.recetas!, element);
-              update();
-            },
-            child: Text("Eliminar"))),
-      ]));
-    });
-  }
-    
+    if (receta.value.recetas?.length != null && receta.value.recetas != null) {
+      receta.value.recetas!.forEach((element) {
+        rows.add(DataRow(cells: [
+          DataCell(Text(
+            "${element.medicamento}",
+            style: text,
+          )),
+          DataCell(Text(
+            "${element.dosis}",
+            style: text,
+          )),
+          DataCell(Text(
+            "${element.frecuencia}",
+            style: text,
+          )),
+          DataCell(Text(
+            "${element.duracion}",
+            style: text,
+          )),
+          DataCell(Text(
+            "${element.via}",
+            style: text,
+          )),
+          DataCell(ElevatedButton(
+              onPressed: () {
+                removeElement(receta.value.recetas!, element);
+                update();
+              },
+              child: Text("Eliminar"))),
+        ]));
+      });
+    } else {
+      receta.value.recetas = [];
+    }
+    print(receta.value.recetas);
+    print("=========buildarrows======");
     return rows;
   }
 
   List<DataRow> buildDatarowsDiagnostico(TextStyle text) {
     List<DataRow> rows = [];
-
-    diagnosticos.forEach((element) {
+    print("llenanado tabla de diagnostico");
+    diagnosticos.value.forEach((element) {
       rows.add(DataRow(cells: [
         DataCell(Text(
           "${element.clave}",
@@ -82,7 +86,7 @@ class ConsultamedicaController extends GetxController
         )),
         DataCell(ElevatedButton(
             onPressed: () {
-              removeElement(diagnosticos, element);
+              removeElement(diagnosticos.value, element);
             },
             child: Text("Eliminar"))),
       ]));
@@ -136,13 +140,16 @@ class ConsultamedicaController extends GetxController
     tabController.addListener(() {
       if (tabController.indexIsChanging) {
         saveConsultaMedica();
-        // listMedicamento.value = [];
-        // consultaMedica.receta!.recetas!.forEach((element) {
-        //   if (element.suggestion == true) {
-        //     listMedicamento.value.add(element.medicamento!);
-        //   }
-        //   print(element);
-        // });
+        listMedicamento.value = [];
+        if(receta.value.recetas!.length > 0){
+          consultaMedica.receta!.recetas!.forEach((element) {
+          if (element.suggestion == true) {
+            listMedicamento.value.add(element.medicamento!);
+          }
+          print(element);
+        });
+        }
+        
       }
     });
   }
@@ -243,6 +250,8 @@ class ConsultamedicaController extends GetxController
     re.duracion = duracionController.text;
     re.via = pickvia.value;
     re.suggestion = false;
+    print(re.toJson());
+    print(receta.value.recetas);
     receta.value.recetas!.add(re);
     cleanReceta();
     update();
@@ -291,18 +300,21 @@ class ConsultamedicaController extends GetxController
     Paciente pacien = new Paciente();
     var id = Uuid().v1();
     receta..value.observaciones = observacionesController.text;
+        if(consultaMedica != null){
+      consultaMedica.date_of_create = new DateTime.now().year.toString();
+    }
     // receta.value.recetas = recetas.value;
     if (historyClinica.isFirst.value == true) {
       consultaMedica.idPaciente = historyClinica.select.value.id;
       consultaMedica.id = historyClinica.select.value.name;
-    }else{
+    } else {
       consultaMedica.idPaciente = args["paciente"].id;
       consultaMedica.paciente = args["paciente"].name;
     }
     consultaMedica.id = id;
-    
+
     consultaMedica.evolucion = evolucionController.text;
-    
+
     consultaMedica.frecuenciaCardiaca = frecCardiacaController.text;
     consultaMedica.frecuenciaRespiratoria = frecRespiratoriaController.text;
     consultaMedica.presionArterial = presionArterialController.text;
@@ -334,7 +346,8 @@ class ConsultamedicaController extends GetxController
     consultaMedica.analisisPlan = analisisController.text;
     consultaMedica.paraLaVida = paralavidaController.text;
     consultaMedica.paraLaFuncion = paralafuncionController.text;
-
+    print(receta.value.recetas);
+    consultaMedica.receta?.recetas = receta.value.recetas;
     consultaMedica.receta = receta.value;
   }
 
@@ -344,7 +357,7 @@ class ConsultamedicaController extends GetxController
         id, "ConsultaMedica", args["paciente"].id);
 
     if (data == null) {
-      consultaMedica.date_of_create = new DateTime.now().year.toString();
+      
       evolucionController.text = "";
       pacienteController.text = "";
       frecCardiacaController.text = "";
@@ -414,19 +427,19 @@ class ConsultamedicaController extends GetxController
       paralafuncionController.text = data.paraLaFuncion!;
       // var a =
       //     Diagnostico.fromJson(data.get("diagnostico") as Map<String, dynamic>);
-      ;
-      List<Diagnostico> dia = List<Diagnostico>.from(data.diagnostico!
-          .map((i) => Diagnostico.fromJson(i as Map<String, dynamic>)));
-      // List<Diagnostico> sd = data.get("diagnostico").cast<Diagnostico>();
-      print(dia);
-      print(dia[0].diagnostico);
-      diagnosticos.value = dia;
+      print("==========daatos diagnostico==========");
+      print(data.diagnostico);
+      diagnosticos.value = data.diagnostico!;
+      
 
-      Receta re = Receta.fromJson(data.receta as Map<String, dynamic>);
-      receta.value = re;
-      print(receta.value);
-      print("==========Sasasas==========");
-      print(re);
+      
+      data.receta?.recetas!.forEach((element) {
+        print(element);
+      });
+      print("==========datos recetas==========");
+      receta.value.recetas = data.receta?.recetas;
+      
+      
       // var bb = data.get("diagnostico");
       // bb.forEach((value) {
       //   Diagnostico di = Diagnostico.fromJson(value as Map<String, dynamic>);

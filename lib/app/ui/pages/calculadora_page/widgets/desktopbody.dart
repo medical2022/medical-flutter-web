@@ -31,6 +31,10 @@ class DesktopBody extends GetView<CalculadoraController> {
                     TabBar(
                         controller: controller.tabController,
                         isScrollable: true,
+                        indicator: UnderlineTabIndicator(
+                          borderSide: BorderSide(color: Colors.blue,width: 2),
+                          
+                        ),
                         labelColor: Colors.black,
                         tabs: [
                           Tab(

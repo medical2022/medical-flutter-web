@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:medicinesystem/app/data/models/ConsultaMedica_model.dart';
@@ -37,12 +39,24 @@ class ConsultaMedicaService {
       String id, String collection, String idDoc) async {
     final data = await api.getDocumentByIdDoc(id, collection, idDoc);
 
-    ConsultaMedica consultaMedica = ConsultaMedica.fromJson(data.data() as Map<String, dynamic>);
+    ConsultaMedica consultaMedica =
+        ConsultaMedica.fromJson(data.data() as Map<String, dynamic>);
     return consultaMedica;
   }
 
   Future<List<ConsultaMedica>> getDataList(String id, String collection) async {
     var result = await api.getDataCollectionId(id, collection);
+    result.docs.forEach((e) =>{ 
+      print("===================="),
+      print(ConsultaMedica.fromJson(e.data() as Map<String, dynamic>).id)});
+    result.docs.map((e) =>
+        {
+          print("===="),
+          print(ConsultaMedica.fromJson(jsonDecode(e.data().toString())).id)});
+    print(result.docs
+        .map((doc) =>
+            ConsultaMedica.fromJson(doc.data() as Map<String, dynamic>))
+        .toList());
     List<ConsultaMedica> data = result.docs
         .map((doc) =>
             ConsultaMedica.fromJson(doc.data() as Map<String, dynamic>))
